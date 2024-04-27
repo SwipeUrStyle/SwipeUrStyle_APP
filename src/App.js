@@ -14,12 +14,10 @@ import ConfigurationsUser from './componentes/ConfigurationsUser';
 function App() {
   return (
     <div className="App">
-  
-  
+       <Header/>
       <Routes>
         <Route path="/Styling/*" element={
           <div>
-            <Header/>
             <Options />
             <Routes>
               <Route index element={<div></div>} />
@@ -29,10 +27,9 @@ function App() {
             </Routes>
           </div>
         } />
-        <Route path="/schedule" element={<Header/>} />
+        <Route path="/schedule" element={<div></div>} />
         <Route path="/closet/*" element={
           <div>
-             {<Header/> }
             {<ClosetOptions/>}
             <Routes>
             <Route path="My Closet" element={<ClosetGrid/>} />
@@ -42,7 +39,6 @@ function App() {
             } />
         <Route path="/account*" element={
           <div>
-             {<Header/>}
             {<AcountOptions/>}
             <Routes>
             <Route path="Account" element={<UserInfoGrid/> } />
