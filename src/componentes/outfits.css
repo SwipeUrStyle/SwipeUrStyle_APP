@@ -1,0 +1,132 @@
+.outfit-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0px; 
+}
+  
+.outfit-item {
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 90px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+  
+.outfit-item:nth-child(5n) {
+    border-right: none; 
+}
+  
+.more-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 25px;
+    align-self: end;
+    justify-self: center;
+    grid-column: 1 / -1;
+    justify-self: center; 
+}
+
+  
+.more-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+
+
+  
+/* Ajusta el número de columnas para pantallas pequeñas */
+@media (max-width: 600px) {
+    .outfit-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+  
+/* Ajusta el número de columnas para pantallas medianas */
+@media (min-width: 601px) and (max-width: 900px) {
+    .outfit-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+  
+/* Ajusta el número de columnas para pantallas grandes */
+@media (min-width: 901px) {
+    .outfit-container {
+      grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.outfit-item {
+    position: relative;
+  }
+  
+  .like-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+ 
+  .closet-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+.outfitcloset-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px; 
+  margin-top: 30px; /* Margen superior añadido */
+}
+  .add-clothes-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: end;
+    justify-self: center;
+    grid-column: 1 / -1;
+    border-radius: 25px; /* Esquinas redondeadas */
+    background-color: rgb(98, 0, 255); /* Fondo azul morado */
+    color: #FFFFFF; /* Texto blanco */
+    border: none; /* Sin borde */
+    transition-duration: 0.4s; /* Transición suave */
+    margin-top: 20px
+}
+
+.add-clothes-button:hover {
+    background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
+    color: rgb(98, 0, 255); /* Texto azul morado al pasar el mouse */
+}
+.update-button{
+  padding: 10px 15px;
+  font-size: 10px;
+  cursor: pointer;
+  align-self: end;
+  justify-self: center;
+  grid-column: 1 / -1;
+  border-radius: 25px; /* Esquinas redondeadas */
+  background-color: rgb(98, 0, 255); /* Fondo azul morado */
+  color: #FFFFFF; /* Texto blanco */
+  border: none; /* Sin borde */
+  transition-duration: 0.4s; /* Transición suave */
+  margin-top: 20px
+}
+
+
+.update-button:hover {
+  background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
+  color: rgb(98, 0, 255); /* Texto azul morado al pasar el mouse */
+}
+

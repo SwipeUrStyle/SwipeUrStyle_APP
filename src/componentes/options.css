@@ -1,0 +1,28 @@
+.Options {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 2px solid #ccc; /* Línea horizontal gris que ocupa toda la pantalla */
+}
+
+.btn {
+  flex: 1;
+  border: none;
+  padding: 5px;
+  font-size: 14px; /* Reducir el tamaño del texto del botón */
+  text-align: center;
+  background-color: #fff;
+  color: #ccc; /* Color gris para el botón no seleccionado */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Arial'; 
+}
+
+.btn:hover {
+  background-color: #f0f0f0;
+}
+
+.btn.active {
+  color: #000; /* Color negro para el botón activo */
+  border-bottom: 2px solid #000; /* Línea inferior negra para el botón activo */
+}

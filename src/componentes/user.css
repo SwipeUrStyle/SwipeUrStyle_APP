@@ -1,0 +1,36 @@
+.user-grid-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto 1fr; 
+  grid-template-rows: repeat(6, auto);
+  gap: 0px;
+  margin: 0 auto;
+}
+.user-info {
+  grid-column: 1;
+  grid-row: span 6;
+}
+
+.user-grid-items {
+  grid-column: 2; 
+  grid-row: span 6; 
+}
+
+
+
+.userConfig-grid-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 0px;
+}
+.user-grid-item {
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 30px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  width: 100%; 
+}
