@@ -19,7 +19,6 @@ function App() {
         <Route path="/" element={<LoginSignUp />} />
         <Route path="/Styling/*" element={
           <div>
-            <Header />
             <Header/>
             <Options />
             <Routes>

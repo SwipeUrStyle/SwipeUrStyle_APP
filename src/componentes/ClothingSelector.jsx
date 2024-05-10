@@ -34,7 +34,7 @@ const ClothingSelector = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container2">
       <div className="row">
         <div className="item">{tops[(selectedTop + tops.length - 2) % tops.length]}</div>
         <div className="item">{tops[(selectedTop + tops.length - 1) % tops.length]}</div>
