@@ -11,6 +11,7 @@ import AcountOptions from './componentes/AcountOptions';
 import UserInfoGrid from './componentes/UserInfoGrid';
 import ConfigurationsUser from './componentes/ConfigurationsUser';
 import LoginSignUp from './componentes/LoginSignUp';
+import TrashGrid from './componentes/TrashGrid';
 
 function App() {
   return (
@@ -20,7 +21,6 @@ function App() {
         <Route path="/Styling/*" element={
           <div>
             <Header />
-            <Header/>
             <Options />
             <Routes>
               <Route index element={<div></div>} />
@@ -33,17 +33,17 @@ function App() {
         <Route path="/schedule" element={<Header/>} />
         <Route path="/closet/*" element={
           <div>
-            {<ClosetOptions />}
              {<Header/> }
             {<ClosetOptions/>}
             <Routes>
               <Route path="My Closet" element={<ClosetGrid />} />
-              <Route path="Paper Bin" element={<div>Contenido de My Paper Bin</div>} />
+              <Route path="Paper Bin" element={<TrashGrid/>} />
             </Routes>
           </div>
         } />
         <Route path="/account*" element={
           <div>
+            {<Header/> }
             {<AcountOptions />}
             <Routes>
               <Route path="Account" element={<UserInfoGrid />} />
@@ -57,3 +57,6 @@ function App() {
 }
 
 export default App;
+
+
+
