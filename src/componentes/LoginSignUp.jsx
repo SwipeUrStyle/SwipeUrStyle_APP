@@ -104,7 +104,9 @@ const LoginSignUp = () => {
                             handleSignUpClick(e);
                         }
                     }}>Sign Up</div>
-                    <div className={action === 'Create Account' ? 'submit gray' : 'submit'} onClick={(e) => { setAction('Login'); handleLoginClick(e); }}>Login</div>
+                    <div className={action === 'Create Account' ? 'submit gray' : 'submit'} onClick={(e) => { setAction('Login'); if(action==='Login'){
+                        handleLoginClick(e);
+                    } }}>Login</div>
                 </div>
             </div>
         </div>
