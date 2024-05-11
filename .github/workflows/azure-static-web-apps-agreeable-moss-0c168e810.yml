@@ -41,7 +41,7 @@ jobs:
       - name: Install Dependencies Of Jest
         run: npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer
       - name: Test
-        run: npm run build
+        run: npm test
 
   deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
