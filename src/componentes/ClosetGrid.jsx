@@ -9,7 +9,6 @@ const ClosetGrid = () => {
   const [like, setLike] = useState(Array(outfits.length).fill(false)); // Crea el estado like
   const [showForm, setShowForm] = useState(false);
   const [clothing1, setClothing1] = useState('');
-  const [clothing2, setClothing2] = useState('');
   const [category1, setCategory1] = useState('');
   const [description1, setDescription1] = useState('');
   const [image1, setImage1] = useState('');
@@ -32,7 +31,6 @@ const ClosetGrid = () => {
     // Aquí puedes manejar la lógica para enviar los datos del formulario
     // Por ejemplo, puedes enviar los datos al servidor o realizar otras acciones necesarias
     console.log('Prenda 1:', clothing1);
-    console.log('Prenda 2:', clothing2);
     console.log('Category 1:', category1);
     console.log('Description 1:', description1);
     console.log('Image 1:', image1);
