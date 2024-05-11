@@ -12,23 +12,65 @@ const LoginSignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    let autentificado = false;
+
+
+    const validateForm = async (event) => {
+        event.preventDefault();
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const raw = JSON.stringify({
+            'userEmail': email,
+            'userPassword': password
+        });
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+        };
+
+        const rawResponse = await fetch("https://swipeurstyleback.azurewebsites.net/login", requestOptions);
+        const jsonResponse = await rawResponse.json();
+        console.log("jsonResponse", jsonResponse);
+        document.cookie = "authToken=" + jsonResponse.token;
+        if (typeof jsonResponse.token !== 'undefined') {
+            console.log('Se ha recibido un token en la respuesta.');
+            autentificado = true;
+            console.log('Estado:', autentificado);
+        } else {
+            console.log('No se ha recibido un token en la respuesta.');
+            autentificado = false;
+        }
+        console.log('Estado antes de cambiar:', autentificado);
+        if(autentificado){
+            navigate('/Styling/Swipe ur syle'); 
+        }else{
+            alert('Error al ingresar')
+        }
+    }
+
 
     const handleSignUpClick = () => {
         if (!fullName || !email || !password) {
             alert('Please fill in all fields.');
             return;
+        } else {
+            validateForm();
         }
         // Proceed with sign up logic
     };
 
-    const handleLoginClick = () => {
+    const handleLoginClick = (event) => {
+        if (event) {
+            event.preventDefault(); // Asegúrate de que el evento no sea undefined
+        }
         if (!email || !password) {
             alert('Please fill in both email and password fields.');
             return;
-        }else{
-            navigate('/Styling/Swipe ur syle');
+        } else {
+            validateForm(event);          
         }
-     
+
         // Proceed with login logic
     };
     return (
@@ -45,7 +87,7 @@ const LoginSignUp = () => {
                     <img src={user_icon} alt='' />
                     <input type='text' placeholder='Full Name' value={fullName} onChange={(e) => setFullName(e.target.value)} />
                 </div>}
-    
+
                 <div className='input'>
                     <img src={email_icon} alt='' />
                     <input type='email' placeholder='Email Address' value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -56,17 +98,18 @@ const LoginSignUp = () => {
                 </div>
                 {action === 'Login' && <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
                 <div className='submit-container'>
-                    <div className={action === 'Login' ? 'submit gray' : 'submit'} onClick={() => { setAction('Create Account'); 
-                    if(action === 'Create Account'){handleSignUpClick();
-                    }}}>Sign Up</div>
-                    <div className={action === 'Create Account' ? 'submit gray' : 'submit'} onClick={() => { setAction('Login'); if(action === 'Login'){
-                        handleLoginClick();
-                    } }}>Login</div>
+                    <div className={action === 'Login' ? 'submit gray' : 'submit'} onClick={(e) => {
+                        setAction('Create Account');
+                        if (action === 'Create Account') {
+                            handleSignUpClick(e);
+                        }
+                    }}>Sign Up</div>
+                    <div className={action === 'Create Account' ? 'submit gray' : 'submit'} onClick={(e) => { setAction('Login'); handleLoginClick(e); }}>Login</div>
                 </div>
             </div>
         </div>
     )
-    
+
 }
 
 export default LoginSignUp
