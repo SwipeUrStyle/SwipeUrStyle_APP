@@ -1,0 +1,131 @@
+/* Formulary.css */
+
+/* Boton add clothes formulario*/
+
+/* Nueva clase para centrar el botón y cambiar su color */
+.centered-purple-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: rgb(112, 111, 229); /* Cambia el color a morado */
+    color: #FFFFFF;
+    border: none;
+    transition-duration: 0.4s;
+  }
+
+
+/* Botón de Add Clothes y botón de cerrar con color diferente */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+/*Centrar campos*/
+
+.centered-input {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+.add-clothes-button, .close-button, .close-button-modal {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: rgb(112, 111, 229);
+    color: #FFFFFF;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.add-clothes-button:hover, .close-button:hover, .close-button-modal:hover {
+    background-color: #6200ff; /* Cambio de color al pasar el mouse */
+}
+
+
+.add-clothes-modal-button:hover {
+    background-color: #6200ff; /* Cambio de color al pasar el mouse */
+}
+
+/* Nueva clase para el botón de cerrar con color diferente */
+.close-button-modal-different-color {
+    padding: 15px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: rgb(156, 155, 158);
+    color: #FFFFFF;
+    border: none;
+    transition-duration: 0.4s;
+}
+.close-button-modal-different-color:hover {
+    background-color: #747475; /* Cambia el color de fondo al pasar el mouse */
+}
+
+/* Estilos anteriores */
+
+.modal-content {
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px; /* Espaciado interno */
+}
+
+.modal-header {
+    border-bottom: none; /* Sin borde en la parte inferior del encabezado */
+    padding-bottom: 0; /* Espaciado inferior reducido */
+}
+
+.modal-body {
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.input-group {
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.input-group-text {
+    background-color: #f0f0f0; /* Fondo gris claro para el texto del grupo de entrada */
+    border: none; /* Sin borde */
+}
+
+.form-control {
+    border: 1px solid #ccc; /* Borde del campo de entrada */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+}
+
+.btn-success {
+    background-color: rgb(112, 111, 229); /* Fondo morado */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambio de cursor al pasar el mouse */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.btn-success:hover {
+    background-color: #6200ff; /* Cambio de color al pasar el mouse */
+}
+
+.btn-secondary {
+    background-color: #ccc; /* Fondo gris */
+    color: #000; /* Texto negro */
+    border: none; /* Sin borde */
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambio de cursor al pasar el mouse */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.btn-secondary:hover {
+    background-color: #999; /* Cambio de color al pasar el mouse */
+}
