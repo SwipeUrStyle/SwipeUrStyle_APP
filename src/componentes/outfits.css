@@ -37,21 +37,23 @@
 }
 
 .restore-button {
-  margin-top: 10px;
-  padding: 5px 10px;
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 10px;
+  align-self: end;
   border: none;
-  background-color:  rgb(98, 0, 255);
+  justify-self: center;
+  background-color:  rgb(112, 111, 229);
   color: #fff;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 25px;
   position: absolute; /* Añade esta línea */
-  bottom: 0; /* Añade esta línea */
-  right: 0; /* Añade esta línea */
+  bottom: 10px; /* Añade esta línea */
+  right: 10px; /* Añade esta línea */
 }
 
 
