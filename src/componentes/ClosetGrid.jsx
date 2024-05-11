@@ -4,7 +4,7 @@ import './outfits.css'; // Importa el archivo CSS existente
 import './Formulary.css'; // Importa el nuevo archivo CSS
 
 const ClosetGrid = () => {
-  const outfits = ['outfit1.png', 'outfit2.png', 'outfit3.png', 'outfit4.png', 'outfit5.png', 'outfit6.png'];
+  const outfits = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png'];
 
   const [like, setLike] = useState(Array(outfits.length).fill(false)); // Crea el estado like
   const [showForm, setShowForm] = useState(false);
