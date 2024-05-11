@@ -4,7 +4,76 @@
     grid-template-rows: repeat(2, 1fr);
     gap: 0px; 
 }
-  
+
+
+
+.trash-grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px; 
+  margin-top: 30px; /* Margen superior añadido */
+}
+
+.info-text {
+  color: gray;
+  text-align: center;
+  margin-top: 30px; /* Margen superior añadido */
+
+}
+.trash-item {
+  position: relative; /* Añade esta línea */
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 90px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+.trash-item:nth-child(5n) {
+  border-right: none; 
+}
+
+.restore-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color:  rgb(98, 0, 255);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 25px;
+  position: absolute; /* Añade esta línea */
+  bottom: 0; /* Añade esta línea */
+  right: 0; /* Añade esta línea */
+}
+
+
+.outfit-name {
+  position: absolute;
+  bottom: 0; 
+  left: 50%; 
+  transform: translateX(-50%);
+}
+.restore-button:hover {
+  background-color: #fff;
+  color: #000;
+  position: absolute;
+}
+
+.days-left {
+  position: absolute;
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%);
+}
+
 .outfit-item {
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
