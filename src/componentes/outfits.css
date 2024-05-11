@@ -159,25 +159,26 @@
   gap: 0px; 
   margin-top: 30px; /* Margen superior añadido */
 }
-  .add-clothes-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    align-self: end;
-    justify-self: center;
-    grid-column: 1 / -1;
-    border-radius: 25px; /* Esquinas redondeadas */
-    background-color: rgb(98, 0, 255); /* Fondo azul morado */
-    color: #FFFFFF; /* Texto blanco */
-    border: none; /* Sin borde */
-    transition-duration: 0.4s; /* Transición suave */
-    margin-top: 20px
+.add-clothes-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: end;
+  justify-self: center;
+  grid-column: 1 / -1;
+  border-radius: 25px; /* Esquinas redondeadas */
+  background-color: rgb(112, 111, 229); /* Fondo azul morado */
+  color: #FFFFFF; /* Texto blanco */
+  border: none; /* Sin borde */
+  transition-duration: 0.4s; /* Transición suave */
+  margin-top: 20px;
 }
 
 .add-clothes-button:hover {
-    background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
-    color: rgb(98, 0, 255); /* Texto azul morado al pasar el mouse */
+  background-color: #6200ff; /* Fondo blanco al pasar el mouse */
+  
 }
+
 .update-button{
   padding: 10px 15px;
   font-size: 10px;
@@ -186,7 +187,7 @@
   justify-self: center;
   grid-column: 1 / -1;
   border-radius: 25px; /* Esquinas redondeadas */
-  background-color: rgb(98, 0, 255); /* Fondo azul morado */
+  background-color: rgb(112, 111, 229); /* Fondo azul morado */
   color: #FFFFFF; /* Texto blanco */
   border: none; /* Sin borde */
   transition-duration: 0.4s; /* Transición suave */
@@ -196,6 +197,6 @@
 
 .update-button:hover {
   background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
-  color: rgb(98, 0, 255); /* Texto azul morado al pasar el mouse */
+  color: rgb(112, 111, 229); /* Texto azul morado al pasar el mouse */
 }
 
