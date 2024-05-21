@@ -191,24 +191,47 @@
   height: auto;
 }
 
-.update-button{
+.update-button {
   padding: 10px 15px;
-  font-size: 10px;
-  cursor: pointer;
-  align-self: end;
-  justify-self: center;
-  grid-column: 1 / -1;
-  border-radius: 25px; /* Esquinas redondeadas */
-  background-color: rgb(112, 111, 229); /* Fondo azul morado */
-  color: #FFFFFF; /* Texto blanco */
-  border: none; /* Sin borde */
-  transition-duration: 0.4s; /* Transición suave */
-  margin-top: 20px
+  font-size: 14px;
+  background-color: rgb(112, 111, 229);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 25px;
+  transition-duration: 0.4s;
+  position: absolute;
+
 }
+
 
 
 .update-button:hover {
   background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
   color: rgb(112, 111, 229); /* Texto azul morado al pasar el mouse */
+}
+
+.outfit-item {
+  position: relative;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Cambio a dirección de columna */
+  align-items: center;
+  
+}
+
+.outfit-image {
+  width: 100%; /* Ajusto el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Altura automática para mantener la proporción */
+  object-fit: cover; /* Para ajustar la imagen correctamente */
+}
+
+.outfit-name {
+  
+  text-align: center;
+  max-width: 100%; /* Ajusta el ancho máximo del contenedor de nombre */
+  font-size: 18px; /* Ajusta el tamaño de letra del nombre de la imagen */
+  margin-bottom: 80px; /* Ajusta el margen inferior para separar el nombre del botón */
 }
 
