@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 .container{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -10,6 +12,7 @@
 }
 .image-container {
     width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho */
+    border-radius: 20px;
 }
 
 .image-container img {

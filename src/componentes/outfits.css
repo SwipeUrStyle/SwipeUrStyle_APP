@@ -37,21 +37,23 @@
 }
 
 .restore-button {
-  margin-top: 10px;
-  padding: 5px 10px;
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 10px;
+  align-self: end;
   border: none;
-  background-color:  rgb(98, 0, 255);
+  justify-self: center;
+  background-color:  rgb(112, 111, 229);
   color: #fff;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 25px;
   position: absolute; /* Añade esta línea */
-  bottom: 0; /* Añade esta línea */
-  right: 0; /* Añade esta línea */
+  bottom: 10px; /* Añade esta línea */
+  right: 10px; /* Añade esta línea */
 }
 
 
@@ -159,25 +161,26 @@
   gap: 0px; 
   margin-top: 30px; /* Margen superior añadido */
 }
-  .add-clothes-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    align-self: end;
-    justify-self: center;
-    grid-column: 1 / -1;
-    border-radius: 25px; /* Esquinas redondeadas */
-    background-color: rgb(98, 0, 255); /* Fondo azul morado */
-    color: #FFFFFF; /* Texto blanco */
-    border: none; /* Sin borde */
-    transition-duration: 0.4s; /* Transición suave */
-    margin-top: 20px
+.add-clothes-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: end;
+  justify-self: center;
+  grid-column: 1 / -1;
+  border-radius: 25px; /* Esquinas redondeadas */
+  background-color: rgb(112, 111, 229); /* Fondo azul morado */
+  color: #FFFFFF; /* Texto blanco */
+  border: none; /* Sin borde */
+  transition-duration: 0.4s; /* Transición suave */
+  margin-top: 20px;
 }
 
 .add-clothes-button:hover {
-    background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
-    color: rgb(98, 0, 255); /* Texto azul morado al pasar el mouse */
+  background-color: #6200ff; /* Fondo blanco al pasar el mouse */
+  
 }
+
 
 
 /*vuelve responsive las imagenes */
@@ -196,7 +199,7 @@
   justify-self: center;
   grid-column: 1 / -1;
   border-radius: 25px; /* Esquinas redondeadas */
-  background-color: rgb(98, 0, 255); /* Fondo azul morado */
+  background-color: rgb(112, 111, 229); /* Fondo azul morado */
   color: #FFFFFF; /* Texto blanco */
   border: none; /* Sin borde */
   transition-duration: 0.4s; /* Transición suave */
@@ -206,6 +209,6 @@
 
 .update-button:hover {
   background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
-  color: rgb(98, 0, 255); /* Texto azul morado al pasar el mouse */
+  color: rgb(112, 111, 229); /* Texto azul morado al pasar el mouse */
 }
 
