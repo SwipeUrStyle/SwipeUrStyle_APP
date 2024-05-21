@@ -12,6 +12,8 @@ import UserInfoGrid from './componentes/UserInfoGrid';
 import ConfigurationsUser from './componentes/ConfigurationsUser';
 import LoginSignUp from './componentes/LoginSignUp';
 import TrashGrid from './componentes/TrashGrid';
+import Calendary from './componentes/Calendary';
+import CalendaryOptions from './componentes/CalendaryOptions';
 
 function App() {
   return (
@@ -24,13 +26,19 @@ function App() {
             <Options />
             <Routes>
               <Route index element={<div></div>} />
-              <Route path="Swipe ur syle" element={<ClothingSelector />} />
+              <Route path="Swipe ur syle" element={<ClothingSelector/>} />
               <Route path="inspiration" element={<OutfitgridSave />} />
               <Route path="Ur favorites" element={<OutfitGridWithLikes />} />
             </Routes>
           </div>
         } />
-        <Route path="/schedule" element={<Header/>} />
+        <Route path="/schedule/*" element={ <div>
+             {<Header/> }
+            {<CalendaryOptions/>}
+            <Routes>
+              <Route path="MySchedule" element={<Calendary/>} />
+            </Routes>
+          </div>} />
         <Route path="/closet/*" element={
           <div>
              {<Header/> }
@@ -57,6 +65,3 @@ function App() {
 }
 
 export default App;
-
-
-

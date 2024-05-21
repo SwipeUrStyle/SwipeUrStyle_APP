@@ -26,3 +26,10 @@
   color: #000; /* Color negro para el botón activo */
   border-bottom: 2px solid #000; /* Línea inferior negra para el botón activo */
 }
+
+.CalendaryOptions {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 2px solid #ccc; /* Línea horizontal gris que ocupa toda la pantalla */
+}
