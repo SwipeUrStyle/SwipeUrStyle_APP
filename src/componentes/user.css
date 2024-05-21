@@ -1,36 +1,57 @@
 .user-grid-container {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: auto 1fr; 
-  grid-template-rows: repeat(6, auto);
-  gap: 0px;
-  margin: 0 auto;
+  width: 60%; /* Ocupa el 60% del ancho */
+  float: left; /* Flotar a la izquierda */
+  
 }
+
 .user-info {
-  grid-column: 1;
-  grid-row: span 6;
-}
-
-.user-grid-items {
-  grid-column: 2; 
-  grid-row: span 6; 
-}
-
-
-
-.userConfig-grid-container {
+  width: 40%; /* Ocupa el 40% del ancho */
+  float: left; /* Flotar a la izquierda */
   margin-top: 20px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, auto);
-  gap: 0px;
 }
+
 .user-grid-item {
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
-  padding: 30px;
-  display: flex; 
-  flex-direction: column; 
-  align-items: flex-start; 
-  width: 100%; 
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.user-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinea los elementos horizontalmente */
+}
+
+.user-details {
+  text-align: center; /* Alinea el texto al centro */
+}
+
+.update-button {
+  margin-top: 10px; /* Espacio superior entre los detalles del usuario y el botón */
+}
+
+.user-avatar img {
+  width: 100%; /* Ajustar la imagen al 100% del ancho del contenedor */
+  height: auto; /* Altura automática para mantener la proporción */
+}
+
+/* Media query para pantallas de hasta 768px de ancho */
+@media only screen and (max-width: 768px) {
+  .user-grid-item {
+    padding: 20px; /* Reducir el padding para pantallas más pequeñas */
+  }
+}
+
+/* Media query para pantallas de hasta 576px de ancho */
+@media only screen and (max-width: 576px) {
+  .user-grid-item {
+    flex-direction: column; /* Cambiar la dirección de la columna a fila para pantallas más pequeñas */
+    align-items: center; /* Centrar los elementos en pantallas más pequeñas */
+  }
 }
