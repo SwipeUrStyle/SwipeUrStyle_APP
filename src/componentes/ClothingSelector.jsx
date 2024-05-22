@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './clothingselector.css';
+import swal from 'sweetalert';
 
 const ClothingSelector = () => {
   const [tops, setTops] = useState([]);
   const [bottoms, setBottoms] = useState([]);
   const [shoes, setShoes] = useState([]);
+  const [topsData, setTopsData] = useState([]);
+  const [bottomsData, setBottomsData] = useState([]);
+  const [shoesData, setShoesData] = useState([]);
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottom, setSelectedBottom] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
+  const [loadingImages, setLoadingImages] = useState(true); // Estado para controlar la carga de imágenes
+
   useEffect(() => {
     const fetchData = async () => {
       const fetchImage = async (imageName, headers) => {
@@ -35,6 +41,9 @@ const ClothingSelector = () => {
         const topsData = data.filter(item => item.category === 'TOP');
         const bottomsData = data.filter(item => item.category === 'BOTTOM');
         const shoesData = data.filter(item => item.category === 'SHOES');
+        setTopsData(topsData);
+        setBottomsData(bottomsData);
+        setShoesData(shoesData);
 
         const topsImages = await fetchAllImages(topsData, headers);
         const bottomsImages = await fetchAllImages(bottomsData, headers);
@@ -43,6 +52,7 @@ const ClothingSelector = () => {
         setTops(topsImages);
         setBottoms(bottomsImages);
         setShoes(shoesImages);
+        setLoadingImages(false); // Cuando todas las imágenes se cargan, establecer loadingImages en false
       } catch (error) {
         console.error('Error fetching garments:', error);
       }
@@ -50,7 +60,6 @@ const ClothingSelector = () => {
 
     fetchData();
   }, []);
-
 
 
   const changeClothing = (type, direction) => {
@@ -76,8 +85,47 @@ const ClothingSelector = () => {
     setSelected(newIndex);
   };
 
+  const handleSave = async () => {
+    const selectedOutfit = {
+      topId: topsData[selectedTop].id,
+      bottomId: bottomsData[selectedBottom].id,
+      shoesId: shoesData[selectedShoes].id,
+    };
+
+    const token = localStorage.getItem('authToken');
+    const headers = {
+      'Content-Type': 'application/json',
+      'authToken': token
+    };
+    console.log('Selected outfit:', selectedOutfit);
+    try {
+      const postResponse  = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(selectedOutfit)
+      });
+      if (!postResponse.ok) {
+        throw new Error(`Failed to save outfit: ${postResponse.status}`);
+      }
+      const { id } = await postResponse.json();
+      const patchResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/outfit/${id}`, {
+        method: 'PATCH',
+        headers: headers,
+        body: JSON.stringify({ favorite: true })
+      });
+      if (patchResponse.ok) {
+        swal('Outfit saved successfully!');
+      } else {
+        throw new Error(`Failed to mark outfit as favorite: ${patchResponse.status}`);
+      }
+    } catch (error) {
+      swal('Error during save:', error.message);
+    }
+  };
+
   return (
     <div className="containerSelector">
+      {loadingImages && <p>Uploading images...</p>}
       <div className="row">
         {tops.length > 0 && <>
           <img className="top-item" src={tops[(selectedTop + tops.length - 2) % tops.length]} alt="top" />
@@ -112,7 +160,7 @@ const ClothingSelector = () => {
         </>}
       </div>
       <div className="button-container">
-        <button className="save-button">Save</button>
+        <button className="save-button" onClick={handleSave}>Save</button>
         <button className="schedule-button">Schedule</button>
       </div>
     </div>

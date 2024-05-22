@@ -14,32 +14,36 @@ const ClosetGrid = () => {
   const [image1, setImage1] = useState('');
   const [images, setImages] = useState({});
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('authToken');
-        const headers = {
-          'authToken': token
-        };
+  const [isClothingModified, setIsClothingModified] = useState(false);
+  const [isCategoryModified, setIsCategoryModified] = useState(false);
+  const [isDescriptionModified, setIsDescriptionModified] = useState(false);
 
-        console.log('Headers being sent:', headers);
-
-        const response = await fetch('https://swipeurstyleback.azurewebsites.net/garments', { headers });
-        const data = await response.json();
-        setOutfits(data);
-        setLike(Array(data.length).fill(false));
-
-        for (const outfit of data) {
-          const imageResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/image/${outfit.imageName}`, { headers });
-          const blob = await imageResponse.blob();
-          const imageUrl = URL.createObjectURL(blob);
-          setImages(prevImages => ({ ...prevImages, [outfit.imageName]: imageUrl }));
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const headers = {
+        'authToken': token
+      };
+  
+      console.log('Headers being sent:', headers);
+  
+      const response = await fetch('https://swipeurstyleback.azurewebsites.net/garments', { headers });
+      const data = await response.json();
+      setOutfits(data);
+      setLike(Array(data.length).fill(false));
+  
+      for (const outfit of data) {
+        const imageResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/image/${outfit.imageName}`, { headers });
+        const blob = await imageResponse.blob();
+        const imageUrl = URL.createObjectURL(blob);
+        setImages(prevImages => ({ ...prevImages, [outfit.imageName]: imageUrl }));
       }
-    };
-
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -104,12 +108,16 @@ const ClosetGrid = () => {
   const [updateClothing, setUpdateClothing] = useState('');
   const [updateCategory, setUpdateCategory] = useState('');
   const [updateDescription, setUpdateDescription] = useState('');
-
+  const [updateIndex, setUpdateIndex] = useState(null);
+  const [isUpdateClothingModified, setIsUpdateClothingModified] = useState(false);
+  const [isUpdateCategoryModified, setIsUpdateCategoryModified] = useState(false);
+  const [isUpdateDescriptionModified, setIsUpdateDescriptionModified] = useState(false);
 
   const handleOpenUpdateForm = (index) => {
     setUpdateClothing(outfits[index].name);
     setUpdateCategory(outfits[index].category);
     setUpdateDescription(outfits[index].description);
+    setUpdateIndex(index);
     setShowUpdateForm(true);
   };
 
@@ -117,10 +125,48 @@ const ClosetGrid = () => {
     setShowUpdateForm(false);
   };
 
-  const handleUpdateFormSubmit = () => {
-    // Lógica para enviar los datos actualizados al servidor
+  const handleUpdateFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (updateIndex === null) return;
+
+    // Transform the category to uppercase if needed
+    let updateCategoryUpperCase = updateCategory.toUpperCase();
+
+    const id = outfits[updateIndex].id;
+    const token = localStorage.getItem('authToken');
+    const headers = {
+      'authToken': token,
+      'Content-Type': 'application/json'
+    };
+
+    console.log('Headers being sent:', headers);
+    const raw = JSON.stringify({
+      "category": updateCategoryUpperCase,
+      "description": updateDescription,
+      "name": updateClothing
+    });
+
+    try {
+      const response = await fetch(`https://swipeurstyleback.azurewebsites.net/garment/${id}`, {
+        method: 'PATCH',
+        headers: headers,
+        body: raw
+      });
+
+      if (response.ok) {
+        fetchData();
+        swal('Outfit updated successfully:', 'Nice Job!', 'success');
+      } else {
+        swal('Failed to update outfit');
+      }
+    } catch (error) {
+      swal('Error during update:', error.toString(), 'error');
+    }
+
     setShowUpdateForm(false);
-  };
+};
+
 
   const handleSubmitForm = () => {
     // Verificar que los campos no estén vacíos
@@ -146,11 +192,19 @@ const ClosetGrid = () => {
       .then(response => {
         return response.json(); // Aquí esperamos la respuesta de la subida de la imagen
       })
+      let categoryToPost = '';
     // Si la imagen se cargó correctamente, enviar el resto de los datos
+    if (category1 === 'Top') {
+      categoryToPost = 'TOP';
+    } else if (category1 === 'Bottom') {
+      categoryToPost = 'BOTTOM';
+    } else if (category1 === 'Shoes') {
+      categoryToPost = 'SHOES';
+    }
     const garmentData = {
       name: clothing1,
       description: description1,
-      category: category1,
+      category: categoryToPost,
       imageName: image1.name // Suponiendo que la respuesta contiene el nombre del archivo
     };
     console.log('Data to be sent:', garmentData);
@@ -171,6 +225,7 @@ const ClosetGrid = () => {
       .then(data => {
         setOutfits([...outfits, data]);
         swal("Good job!", "You submit a new garment!", "success")
+        fetchData();
         setShowForm(false);
       })
       .catch(error => {
@@ -202,7 +257,6 @@ const ClosetGrid = () => {
           );
 
         })}
-
       </div>
       <Modal
         isOpen={showForm}
@@ -230,21 +284,26 @@ const ClosetGrid = () => {
             Add Clothes
           </button>
           <h2 className="white-text">Update Clothes</h2>
-          <div className='input-group mb-3 centered-input'>
+          <div className={`input-group mb-3 centered-input ${isClothingModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-tshirt'></i></span>
-            <input type='text' id='clothing' className='form-control' placeholder='Clothes' value={clothing1} onChange={(e) => setClothing1(e.target.value)} />
+            <input type='text' id='clothing' className='form-control input-wide' placeholder='Clothes' value={clothing1} onChange={(e) => { setClothing1(e.target.value); setIsClothingModified(true); }} />
           </div>
-          <div className='input-group mb-3 centered-input'>
+          <div className={`input-group mb-3 centered-input ${isCategoryModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-list'></i></span>
-            <input type='text' id='category' className='form-control' placeholder='Category' value={category1} onChange={(e) => setCategory1(e.target.value)} />
+            <select id='category' className='form-control input-category' value={category1} onChange={(e) => { setCategory1(e.target.value); setIsCategoryModified(true); }}>
+              <option value="">Select Category</option>
+              <option value="Top">Top</option>
+              <option value="Bottom">Bottom</option>
+              <option value="Shoes">Shoes</option>
+            </select>
           </div>
-          <div className='input-group mb-3 centered-input'>
+          <div className={`input-group mb-3 centered-input ${isDescriptionModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-align-left'></i></span>
-            <input type='text' id='description' className='form-control' placeholder='Description' value={description1} onChange={(e) => setDescription1(e.target.value)} />
+            <input type='text' id='description' className='form-control input-wide' placeholder='Description' value={description1} onChange={(e) => { setDescription1(e.target.value); setIsDescriptionModified(true); }} />
           </div>
           <div className='input-group mb-3 centered-input'>
             <span className='input-group-text'><i className='fa-solid fa-image'></i></span>
-            <input type='file' id='image' className='form-control' accept='image/*' onChange={(e) => setImage1(e.target.files[0])} />
+            <input type='file' id='image' className='form-control input-wide' accept='image/*' onChange={(e) => setImage1(e.target.files[0])} />
           </div>
 
           <div className='button-container'>
@@ -255,7 +314,6 @@ const ClosetGrid = () => {
           </div>
         </div>
       </Modal>
-
       <Modal
         isOpen={showUpdateForm}
         onRequestClose={handleCloseUpdateForm}
@@ -278,22 +336,26 @@ const ClosetGrid = () => {
         }}
       >
         <div className="modal-content">
-
           <button className="centered-purple-button">
             Update Clothes
           </button>
           <h2 className="white-text">Update Clothes</h2>
-          <div className='input-group mb-3 centered-input'>
+          <div className={`input-group mb-3 centered-input ${isUpdateClothingModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-tshirt'></i></span>
-            <input type='text' id='clothing' className='form-control' placeholder='Clothes' value={updateClothing} onChange={(e) => setUpdateClothing(e.target.value)} />
+            <input type='text' id='update-clothing' className='form-control input-wide' placeholder='Clothes' value={updateClothing} onChange={(e) => { setUpdateClothing(e.target.value); setIsUpdateClothingModified(true); }} />
           </div>
-          <div className='input-group mb-3 centered-input'>
+          <div className={`input-group mb-3 centered-input ${isUpdateCategoryModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-list'></i></span>
-            <input type='text' id='category' className='form-control' placeholder='Category' value={updateCategory} onChange={(e) => setUpdateCategory(e.target.value)} />
+            <select id='update-category' className='form-control input-category' value={updateCategory} onChange={(e) => { setUpdateCategory(e.target.value); setIsUpdateCategoryModified(true); }}>
+              <option value={updateCategory}>{updateCategory}</option>
+              <option value="Top">Top</option>
+              <option value="Bottom">Bottom</option>
+              <option value="Shoes">Shoes</option>
+            </select>
           </div>
-          <div className='input-group mb-3 centered-input'>
+          <div className={`input-group mb-3 centered-input ${isUpdateDescriptionModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-align-left'></i></span>
-            <input type='text' id='description' className='form-control' placeholder='Description' value={updateDescription} onChange={(e) => setUpdateDescription(e.target.value)} />
+            <input type='text' id='update-description' className='form-control input-wide' placeholder='Description' value={updateDescription} onChange={(e) => { setUpdateDescription(e.target.value); setIsUpdateDescriptionModified(true); }} />
           </div>
 
           <div className='button-container'>

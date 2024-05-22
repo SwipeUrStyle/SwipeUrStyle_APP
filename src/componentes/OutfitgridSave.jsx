@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './outfits.css';
-
+import './OutfitGridWithLikes.css';
 const OutfitGridSave = () => {
   const outfits = [
     { id: 1, name: 'Outfit 1', image: require('../imagenes/outfits/1.png') },
@@ -55,16 +55,8 @@ const OutfitGridSave = () => {
         <div key={outfit.id} className="outfits-item">
           <img src={outfit.image} alt={outfit.name} 
           />
-          
           <button
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              right: 0,
-              border: 'none',
-              background: 'none',
-              cursor: 'pointer'
-            }}
+            className="save-icon"
             onClick={() => handleSave(outfit.id)}
           >
             <img

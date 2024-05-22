@@ -158,3 +158,15 @@
     color: #FFFFFF;
     font-size: 12px;
 }
+.input-wide {
+    width: 40%;
+    color: #757575;
+  }
+  .input-category {
+    width: 43%; 
+    color: #757575;
+  }
+  
+  .black-text input, .black-text select {
+    color: black;
+  }
