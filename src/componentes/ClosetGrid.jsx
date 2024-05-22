@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import './outfits.css';
 import './Formulary.css';
+import swal from 'sweetalert';
 
 const ClosetGrid = () => {
   const [outfits, setOutfits] = useState([]);
@@ -57,6 +58,52 @@ const ClosetGrid = () => {
   const handleCloseForm = () => {
     setShowForm(false);
   };
+  const handleDelete = (id) => {
+ 
+    swal({
+      title: "Are you sure?",
+      text: "You will not be able to recover this garment!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        // Si el usuario confirma la eliminación, realiza la solicitud de eliminación
+        const token = localStorage.getItem('authToken');
+        const headers = {
+          'authToken': token
+        };
+
+        fetch(`https://swipeurstyleback.azurewebsites.net/garment/${id}`, {
+          method: 'DELETE',
+          headers: headers
+        })
+          .then(response => {
+            if (response.ok) {
+              setOutfits(outfits.filter(outfit => outfit.id !== id));
+              swal("Poof! Your garment has been deleted!", {
+                icon: "success",
+              });
+            } else {
+              console.error('Failed to delete garment');
+              swal("Oops! Something went wrong!", {
+                icon: "error",
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Error deleting garment:', error);
+            swal("Oops! Something went wrong!", {
+              icon: "error",
+            });
+          });
+      } else {
+        // Si el usuario cancela la eliminación, muestra un mensaje
+        swal("Your garment is safe!","", "success");
+      }
+    });
+  };
 
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [updateClothing, setUpdateClothing] = useState('');
@@ -84,7 +131,11 @@ const ClosetGrid = () => {
   const handleSubmitForm = () => {
     // Verificar que los campos no estén vacíos
     if (!clothing1 || !category1 || !description1 || !image1) {
-      alert('Please fill in all required fields.');
+      swal("Pay Attention!", "Please fill in all required fields.!")
+      return;
+    }
+    if (image1.name in images) {
+      swal("Warning!", "This image has already been uploaded. Please select a different one.", "warning");
       return;
     }
     const token = localStorage.getItem('authToken');
@@ -99,9 +150,6 @@ const ClosetGrid = () => {
       body: imageFormData
     })
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to upload image');
-        }
         return response.json(); // Aquí esperamos la respuesta de la subida de la imagen
       })
     // Si la imagen se cargó correctamente, enviar el resto de los datos
@@ -128,6 +176,7 @@ const ClosetGrid = () => {
       })
       .then(data => {
         setOutfits([...outfits, data]);
+        swal("Good job!", "You submit a new garment!", "success")
         setShowForm(false);
       })
       .catch(error => {
@@ -143,13 +192,13 @@ const ClosetGrid = () => {
           return (
             <div key={outfit.id} className="outfit-item" style={{ position: 'relative', textAlign: 'center' }}>
               {imageUrl ? (
-                <img src={imageUrl} alt={outfit.name} style={{ width: '200px', height: '200px', marginTop: '-50px' }} />
+                <img src={imageUrl} alt={outfit.name} style={{ width: '200px', height: '200px', marginTop: '-30px' }} />
               ) : (
                 <p>Loading image...</p>
               )}
               <p className="outfit-name" style={{ marginTop: '10px', textAlign: 'center' }}>{outfit.name}</p>
               <button className="update-button" style={{ position: 'absolute', bottom: '15px', left: '50%', transform: 'translateX(-50%)' }} onClick={() => handleOpenUpdateForm(index)}>Update</button>
-              <img src={require(`../imagenes/trash-icon.PNG`)} alt="delete" style={{ position: 'absolute', bottom: 10, right: 50 }} />
+              <img src={require(`../imagenes/trash-icon.PNG`)} alt="delete" style={{ position: 'absolute', bottom: 10, right: 50 }} onClick={() => handleDelete(outfit.id)} />
               <img src={require(`../imagenes/${like[index] ? 'like-blue' : 'like-grey'}.PNG`)} alt="save" style={{ position: 'absolute', bottom: 15, right: 10 }} onClick={() => handleLike(index)} />
             </div>
           );

@@ -5,6 +5,7 @@ import email_icon from '../imagenes/email.png';
 import password_icon from '../imagenes/password.png';
 import login_image from '../imagenes/Login.png';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const LoginSignUp = () => {
     const [action, setAction] = useState('Create Account');
@@ -42,13 +43,17 @@ const LoginSignUp = () => {
             }
 
             if (autentificado) {
+                swal("Good job!", "Welcome Again!", "success")
                 navigate('/Styling/Swipe ur syle');
             } else {
-                alert('Error al ingresar');
+                swal("Email or Password Incorrect!", {
+                    icon: "error",
+                  });
             }
         } catch (error) {
-            console.error('Error during authentication:', error);
-            alert('Error during authentication. Please try again.');
+            swal("Email or Password Incorrect!", {
+                icon: "error",
+              });
         }
     }
 
