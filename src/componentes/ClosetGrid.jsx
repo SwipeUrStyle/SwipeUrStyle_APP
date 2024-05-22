@@ -109,13 +109,12 @@ const ClosetGrid = () => {
   const [updateClothing, setUpdateClothing] = useState('');
   const [updateCategory, setUpdateCategory] = useState('');
   const [updateDescription, setUpdateDescription] = useState('');
-  const [updateFoto, setUpdateFoto] = useState('');
+
 
   const handleOpenUpdateForm = (index) => {
     setUpdateClothing(outfits[index].name);
     setUpdateCategory(outfits[index].category);
     setUpdateDescription(outfits[index].description);
-    setUpdateFoto(outfits[index].id);
     setShowUpdateForm(true);
   };
 
