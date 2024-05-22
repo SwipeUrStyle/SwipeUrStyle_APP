@@ -13,25 +13,25 @@ function Header() {
       <nav className="navigation">
         <ul>
           <li>
-            <Link to="/Styling">
+            <Link to="/Styling/Swipe ur syle">
               <img src={require('../imagenes/styling-icon.jpg')} alt="Styling" />
               <span>Styling</span>
             </Link>
           </li>
           <li>
-            <Link to="/schedule">
+            <Link to="/schedule/MySchedule">
               <img src={require('../imagenes/schedule-icon.PNG')} alt="Schedule" />
               <span>Schedule</span>
             </Link>
           </li>
           <li>
-            <Link to="/closet">
+            <Link to="/closet/My Closet">
               <img src={require('../imagenes/closet-icon.PNG')} alt="Closet" />
               <span>Closet</span>
             </Link>
           </li>
           <li>
-            <Link to="/account">
+            <Link to="/account/Account">
               <img src={require('../imagenes/account-icon.PNG')} alt="Account" />
               <span>Account</span>
             </Link>
@@ -41,5 +41,4 @@ function Header() {
     </header>
   );
 }
-
 export default Header;

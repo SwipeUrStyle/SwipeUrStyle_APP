@@ -1,6 +1,6 @@
 {
   "name": "pagina_principal",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -14,7 +14,9 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
+    "react-sweetalert2": "^0.6.0",
     "styled-components": "^6.1.11",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import './LoginSignUp.css'
-import user_icon from '../imagenes/person.png'
-import email_icon from '../imagenes/email.png'
-import password_icon from '../imagenes/password.png'
-import login_image from '../imagenes/Login.png'
+import React, { useState } from 'react';
+import './LoginSignUp.css';
+import user_icon from '../imagenes/person.png';
+import email_icon from '../imagenes/email.png';
+import password_icon from '../imagenes/password.png';
+import login_image from '../imagenes/Login.png';
 import { useNavigate } from 'react-router-dom';
 
 const LoginSignUp = () => {
@@ -13,7 +13,6 @@ const LoginSignUp = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     let autentificado = false;
-
 
     const validateForm = async (event) => {
         event.preventDefault();
@@ -29,26 +28,29 @@ const LoginSignUp = () => {
             body: raw,
         };
 
-        const rawResponse = await fetch("https://swipeurstyleback.azurewebsites.net/login", requestOptions);
-        const jsonResponse = await rawResponse.json();
-        console.log("jsonResponse", jsonResponse);
-        document.cookie = "authToken=" + jsonResponse.token;
-        if (typeof jsonResponse.token !== 'undefined') {
-            console.log('Se ha recibido un token en la respuesta.');
-            autentificado = true;
-            console.log('Estado:', autentificado);
-        } else {
-            console.log('No se ha recibido un token en la respuesta.');
-            autentificado = false;
-        }
-        console.log('Estado antes de cambiar:', autentificado);
-        if(autentificado){
-            navigate('/Styling/Swipe ur syle'); 
-        }else{
-            alert('Error al ingresar')
+        try {
+            const rawResponse = await fetch("https://swipeurstyleback.azurewebsites.net/login", requestOptions);
+            const jsonResponse = await rawResponse.json();
+            console.log("jsonResponse", jsonResponse);
+
+            // Guarda el token en el localStorage
+            if (jsonResponse.token) {
+                localStorage.setItem('authToken', jsonResponse.token);
+                autentificado = true;
+            } else {
+                autentificado = false;
+            }
+
+            if (autentificado) {
+                navigate('/Styling/Swipe ur syle');
+            } else {
+                alert('Error al ingresar');
+            }
+        } catch (error) {
+            console.error('Error during authentication:', error);
+            alert('Error during authentication. Please try again.');
         }
     }
-
 
     const handleSignUpClick = () => {
         if (!fullName || !email || !password) {
@@ -57,22 +59,20 @@ const LoginSignUp = () => {
         } else {
             validateForm();
         }
-        // Proceed with sign up logic
     };
 
     const handleLoginClick = (event) => {
         if (event) {
-            event.preventDefault(); // Asegúrate de que el evento no sea undefined
+            event.preventDefault();
         }
         if (!email || !password) {
             alert('Please fill in both email and password fields.');
             return;
         } else {
-            validateForm(event);          
+            validateForm(event);
         }
-
-        // Proceed with login logic
     };
+
     return (
         <div className='container'>
             <div className="image-container">
@@ -80,8 +80,9 @@ const LoginSignUp = () => {
             </div>
             <div className='inputs'>
                 <div className='header'>
-                    <div className='text'>{action}</div>
-                    <div className='underline'></div>
+                    <div className={action === 'Login' ? 'textLogin' : 'text'}>
+                        {action}
+                    </div>
                 </div>
                 {action === 'Login' ? <div></div> : <div className='input'>
                     <img src={user_icon} alt='' />
@@ -98,20 +99,25 @@ const LoginSignUp = () => {
                 </div>
                 {action === 'Login' && <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
                 <div className='submit-container'>
-                    <div className={action === 'Login' ? 'submit gray' : 'submit'} onClick={(e) => {
-                        setAction('Create Account');
-                        if (action === 'Create Account') {
-                            handleSignUpClick(e);
-                        }
-                    }}>Sign Up</div>
-                    <div className={action === 'Create Account' ? 'submit gray' : 'submit'} onClick={(e) => { setAction('Login'); if(action==='Login'){
-                        handleLoginClick(e);
-                    } }}>Login</div>
+                    <div className='submit-container'>
+                        <button className={`submit ${action === 'Login' ? 'gray' : ''}`} onClick={(e) => {
+                            setAction('Create Account');
+                            if (action === 'Create Account') {
+                                handleSignUpClick();
+                            }
+                        }}>Sign Up</button>
+                        <button className={`submit ${action === 'Create Account' ? 'gray' : ''}`} onClick={(e) => {
+                            setAction('Login');
+                            if (action === 'Login') {
+                                handleLoginClick(e);
+                            }
+                        }}>Login</button>
+                    </div>
+
                 </div>
             </div>
         </div>
-    )
-
+    );
 }
 
-export default LoginSignUp
+export default LoginSignUp;

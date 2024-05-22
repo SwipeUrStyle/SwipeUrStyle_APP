@@ -1,25 +1,34 @@
+@font-face {
+  font-family: 'Now-Regular'; /* Nombre de la fuente */
+  src: url('../now/Now-Regular.otf') format('opentype');
+  font-family: 'Now-Bold'; /* Nombre de la fuente */
+  src: url('../now/Now-Bold.otf') format('opentype');
+  font-family: 'Now-Medium'; /* Nombre de la fuente */
+  src: url('../now/Now-Medium.otf') format('opentype');
+}
+ 
 .outfit-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 0px; 
+    gap: 0px;
 }
-
-
-
+ 
+ 
+ 
 .trash-grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 0px; 
+  gap: 0px;
   margin-top: 30px; /* Margen superior añadido */
 }
-
+ 
 .info-text {
   color: gray;
   text-align: center;
   margin-top: 30px; /* Margen superior añadido */
-
+ 
 }
 .trash-item {
   position: relative; /* Añade esta línea */
@@ -29,13 +38,13 @@
   text-align: center;
   display: flex;
   justify-content: center;
-
+ 
 }
-
+ 
 .trash-item:nth-child(5n) {
-  border-right: none; 
+  border-right: none;
 }
-
+ 
 .restore-button {
   margin-top: 20px;
   padding: 10px 15px;
@@ -55,27 +64,22 @@
   bottom: 10px; /* Añade esta línea */
   right: 10px; /* Añade esta línea */
 }
+ 
+ 
 
-
-.outfit-name {
-  position: absolute;
-  bottom: 0; 
-  left: 50%; 
-  transform: translateX(-50%);
-}
 .restore-button:hover {
   background-color: #fff;
   color: #000;
   position: absolute;
 }
-
+ 
 .days-left {
   position: absolute;
-  top: 0; 
-  left: 50%; 
+  top: 0;
+  left: 50%;
   transform: translateX(-50%);
 }
-
+ 
 .outfit-item {
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
@@ -83,12 +87,13 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    position: relative;
 }
-  
+
 .outfit-item:nth-child(5n) {
-    border-right: none; 
+    border-right: none;
 }
-  
+ 
 .more-button {
     margin-top: 20px;
     padding: 10px 20px;
@@ -105,65 +110,63 @@
     align-self: end;
     justify-self: center;
     grid-column: 1 / -1;
-    justify-self: center; 
 }
-
-  
+ 
+ 
 .more-button:hover {
     background-color: #fff;
     color: #000;
 }
-
-
-
-  
+ 
+ 
+ 
+ 
 /* Ajusta el número de columnas para pantallas pequeñas */
 @media (max-width: 600px) {
     .outfit-container {
       grid-template-columns: repeat(2, 1fr);
     }
 }
-  
+ 
 /* Ajusta el número de columnas para pantallas medianas */
 @media (min-width: 601px) and (max-width: 900px) {
     .outfit-container {
       grid-template-columns: repeat(3, 1fr);
     }
 }
-  
+ 
 /* Ajusta el número de columnas para pantallas grandes */
 @media (min-width: 901px) {
     .outfit-container {
       grid-template-columns: repeat(5, 1fr);
     }
 }
+ 
 
-.outfit-item {
-    position: relative;
-  }
-  
+ 
   .like-button {
     position: absolute;
     bottom: 0;
     right: 0;
   }
-
+ 
  
   .closet-container {
     text-align: center;
     margin-bottom: 20px;
   }
-  
+ 
 .outfitcloset-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 0px; 
+  gap: 0px;
   margin-top: 30px; /* Margen superior añadido */
 }
 .add-clothes-button {
   padding: 10px 20px;
   font-size: 16px;
+  font-family: 'Now-Medium', sans-serif;
   cursor: pointer;
   align-self: end;
   justify-self: center;
@@ -175,40 +178,58 @@
   transition-duration: 0.4s; /* Transición suave */
   margin-top: 20px;
 }
-
+ 
 .add-clothes-button:hover {
   background-color: #6200ff; /* Fondo blanco al pasar el mouse */
-  
+ 
 }
-
-
-
+ 
+ 
+ 
 /*vuelve responsive las imagenes */
 .outfit-item img {
-  max-width: 100%; 
-  max-height: 100%; 
-  width: auto; 
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
 }
-
-.update-button{
+ 
+.update-button {
   padding: 10px 15px;
-  font-size: 10px;
-  cursor: pointer;
-  align-self: end;
-  justify-self: center;
-  grid-column: 1 / -1;
-  border-radius: 25px; /* Esquinas redondeadas */
-  background-color: rgb(112, 111, 229); /* Fondo azul morado */
-  color: #FFFFFF; /* Texto blanco */
-  border: none; /* Sin borde */
-  transition-duration: 0.4s; /* Transición suave */
-  margin-top: 20px
+  font-size: 14px;
+  font-family: 'Now-Medium', sans-serif;
+  background-color: rgb(112, 111, 229);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 25px;
+  transition-duration: 0.4s;
+  position: absolute;
+ 
 }
-
-
+ 
+ 
+ 
 .update-button:hover {
   background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
   color: rgb(112, 111, 229); /* Texto azul morado al pasar el mouse */
 }
+ 
 
+ 
+.outfit-image {
+  width: 100%; /* Ajusto el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Altura automática para mantener la proporción */
+  object-fit: cover; /* Para ajustar la imagen correctamente */
+}
+ 
+.outfit-name {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 100%;
+  font-size: 14px;
+  margin-bottom: 80px;
+  font-family: 'Now-Medium', sans-serif;
+}

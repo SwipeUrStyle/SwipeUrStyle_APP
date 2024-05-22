@@ -24,15 +24,24 @@
   color: black; 
 }
 
-.item {
-  margin: 0 10px;
+.top-item {
+  width: 200px;
+  height: 220px;
+  object-fit: cover; /* Asegura que la imagen se ajuste al contenedor sin distorsión */
+}
+
+.bottom-item {
+  width: 200px;
+  height: 270px;
+  object-fit: cover;
+}
+
+.shoe-item {
   width: 200px;
   height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none; 
+  object-fit: cover;
 }
+
 
 .choose-button {
   margin-top: 20px;
