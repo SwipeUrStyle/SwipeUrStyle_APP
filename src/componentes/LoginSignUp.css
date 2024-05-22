@@ -1,22 +1,23 @@
 @font-face {
-    font-family: 'Now-Regular';
+    font-family: 'Now-Regular'; /* Nombre de la fuente */
     src: url('../now/Now-Regular.otf') format('opentype');
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium'; /* Nombre de la fuente */
     src: url('../now/Now-Medium.otf') format('opentype');
-    font-family: 'NowAlt-Light';
+    font-family: 'NowAlt-Light'; /* Nombre de la fuente */
     src: url('../now/NowAlt-Light.otf') format('opentype');
   }
- 
+
   @font-face {
     font-family: 'Now-Bold';
     src: url('../now/Now-Bold.otf') format('opentype');
 }
- 
 
+
+/* Aplica la fuente a toda la aplicación */
 body, * {
     font-family: 'Now-Medium', sans-serif;
 }
- 
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -27,7 +28,7 @@ body, * {
     background: #fff;
     padding-bottom: 30px;
 }
- 
+
 .image-container {
     width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho */
     border-radius: 20px;
@@ -37,7 +38,7 @@ body, * {
     width: 100%; /* La imagen ocupará todo el ancho del contenedor */
     height: auto; /* La altura se ajustará automáticamente para mantener la proporción de la imagen */
 }
- 
+
 .header {
     display: flex;
     flex-direction: column;
@@ -46,34 +47,36 @@ body, * {
     width: 100%;
     margin-top: 30px;
 }
- 
+
 .text {
     color: #404040;
     font-size: 40px;
-    font-family: 'Now-Bold', sans-serif;
-    margin-left: -130px;
+    font-family: 'Now-Bold'; /* Usa Now-Bold específicamente aquí */
+    margin-left: -130px; 
 }
 .textLogin {
     color: #404040;
     font-size: 40px;
-    font-family: 'Now-Bold', sans-serif;
-    margin-left: -340px;
+    font-family: 'Now-Bold'; /* Usa Now-Bold específicamente aquí */
+    margin-left: -340px; 
+
+
 }
- 
+
 .underline {
     width: 61px;
     height: 6px;
     background: #404040;
     border-radius: 9px;
 }
- 
+
 .inputs {
     margin-top: 55px;
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
- 
+
 .input {
     display: flex;
     align-items: center;
@@ -83,11 +86,11 @@ body, * {
     background: #eaeaea;
     border-radius: 6px;
 }
- 
+
 .input img {
     margin: 0px 30px;
 }
- 
+
 .input input {
     height: 50px;
     width: 400px;
@@ -97,26 +100,26 @@ body, * {
     color: #797979;
     font-size: 19px;
 }
- 
+
 .forgot-password {
     padding-left: 62px;
     margin-top: 27px;
     color: #797979;
     font-size: 18px;
 }
- 
+
 .forgot-password span {
     color: #706fe5;
     cursor: pointer;
 }
- 
+
 .submit-container {
     display: flex;
     gap: 30px;
     margin: 60px auto;
  
 }
- 
+
 .submit {
     display: flex;
     justify-content: center;
@@ -130,7 +133,7 @@ body, * {
     font-weight: 700;
     cursor: pointer;
 }
- 
+
 .gray {
     background: #EAEAEA;
     color: #676767;

@@ -6,7 +6,7 @@
   font-family: 'Now-Medium'; /* Nombre de la fuente */
   src: url('../now/Now-Medium.otf') format('opentype');
 }
- 
+
 .outfit-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -48,7 +48,7 @@
 .restore-button {
   margin-top: 20px;
   padding: 10px 15px;
-  font-size: 10px;
+  font-size: 14px;
   align-self: end;
   border: none;
   justify-self: center;
@@ -103,7 +103,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 25px;
@@ -166,7 +166,7 @@
 .add-clothes-button {
   padding: 10px 20px;
   font-size: 16px;
-  font-family: 'Now-Medium', sans-serif;
+  font-family: 'Now-Medium';
   cursor: pointer;
   align-self: end;
   justify-self: center;
@@ -197,7 +197,7 @@
 .update-button {
   padding: 10px 15px;
   font-size: 14px;
-  font-family: 'Now-Medium', sans-serif;
+  font-family: 'Now-Medium';
   background-color: rgb(112, 111, 229);
   color: #FFFFFF;
   border: none;
@@ -228,8 +228,9 @@
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  max-width: 100%;
-  font-size: 14px;
-  margin-bottom: 80px;
-  font-family: 'Now-Medium', sans-serif;
+  max-width: 100%; /* Ajusta el ancho máximo del contenedor de nombre */
+  font-size: 14px; /* Ajusta el tamaño de letra del nombre de la imagen */
+  margin-bottom: 80px; /* Ajusta el margen inferior para separar el nombre del botón */
+  font-family: 'Now-Medium';
 }
+

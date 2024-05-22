@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
-
+ 
 function Header() {
   return (
     <header className="Header">
@@ -36,9 +36,16 @@ function Header() {
               <span>Account</span>
             </Link>
           </li>
+          <li>
+          <Link to="/">
+              <img src={require('../imagenes/LogOut.png')} alt="LogOut" />
+              <span>LogOut</span>
+               </Link>
+          </li>
         </ul>
       </nav>
     </header>
   );
 }
+ 
 export default Header;

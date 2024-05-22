@@ -99,21 +99,18 @@ const LoginSignUp = () => {
                 </div>
                 {action === 'Login' && <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
                 <div className='submit-container'>
-                    <div className='submit-container'>
-                        <button className={`submit ${action === 'Login' ? 'gray' : ''}`} onClick={(e) => {
-                            setAction('Create Account');
-                            if (action === 'Create Account') {
-                                handleSignUpClick();
-                            }
-                        }}>Sign Up</button>
-                        <button className={`submit ${action === 'Create Account' ? 'gray' : ''}`} onClick={(e) => {
-                            setAction('Login');
-                            if (action === 'Login') {
-                                handleLoginClick(e);
-                            }
-                        }}>Login</button>
-                    </div>
-
+                    <div className={`submit ${action === 'Login' ? 'gray' : ''}`} onClick={(e) => {
+                        setAction('Create Account');
+                        if (action === 'Create Account') {
+                            handleSignUpClick(e);
+                        }
+                    }}>Sign Up</div>
+                    <div className={`submit ${action === 'Create Account' ? 'gray' : ''}`} onClick={(e) => {
+                        setAction('Login');
+                        if (action === 'Login') {
+                            handleLoginClick(e);
+                        }
+                    }}>Login</div>
                 </div>
             </div>
         </div>
