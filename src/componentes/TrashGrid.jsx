@@ -19,15 +19,15 @@ const TrashGrid = () => {
       .then(data => {
         setItems(data);
         // Download images
-        data.forEach(outfit => {
-          fetch(`https://swipeurstyleback.azurewebsites.net/image/${outfit.imageName}`, { headers })
+        data.forEach(garment => {
+          fetch(`https://swipeurstyleback.azurewebsites.net/image/${garment.imageName}`, { headers })
             .then(response => response.blob())
             .then(blob => {
-              const imageUrl = URL.createObjectURL(blob);
-              setImages(prevImages => ({ ...prevImages, [outfit.imageName]: imageUrl }));
+              const UrlImage = URL.createObjectURL(blob);
+              setImages(prevImages => ({ ...prevImages, [garment.imageName]: UrlImage }));
             })
             .catch(error => {
-              console.error('Error fetching image:', error);
+              console.error(error);
             });
         });
       })
