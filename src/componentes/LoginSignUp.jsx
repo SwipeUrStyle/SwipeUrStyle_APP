@@ -5,8 +5,7 @@ import email_icon from '../imagenes/email.png';
 import password_icon from '../imagenes/password.png';
 import login_image from '../imagenes/Login.png';
 import { useNavigate } from 'react-router-dom';
-import swal from 'sweetalert';
-
+ 
 const LoginSignUp = () => {
     const [action, setAction] = useState('Create Account');
     const [fullName, setFullName] = useState('');
@@ -14,7 +13,7 @@ const LoginSignUp = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     let autentificado = false;
-
+ 
     const validateForm = async (event) => {
         event.preventDefault();
         const myHeaders = new Headers();
@@ -28,12 +27,12 @@ const LoginSignUp = () => {
             headers: myHeaders,
             body: raw,
         };
-
+ 
         try {
             const rawResponse = await fetch("https://swipeurstyleback.azurewebsites.net/login", requestOptions);
             const jsonResponse = await rawResponse.json();
             console.log("jsonResponse", jsonResponse);
-
+ 
             // Guarda el token en el localStorage
             if (jsonResponse.token) {
                 localStorage.setItem('authToken', jsonResponse.token);
@@ -41,22 +40,18 @@ const LoginSignUp = () => {
             } else {
                 autentificado = false;
             }
-
+ 
             if (autentificado) {
-                swal("Good job!", "Welcome Again!", "success")
                 navigate('/Styling/Swipe ur syle');
             } else {
-                swal("Email or Password Incorrect!", {
-                    icon: "error",
-                  });
+                alert('Error al ingresar');
             }
         } catch (error) {
-            swal("Email or Password Incorrect!", {
-                icon: "error",
-              });
+            console.error('Error during authentication:', error);
+            alert('Error during authentication. Please try again.');
         }
     }
-
+ 
     const handleSignUpClick = () => {
         if (!fullName || !email || !password) {
             alert('Please fill in all fields.');
@@ -65,7 +60,7 @@ const LoginSignUp = () => {
             validateForm();
         }
     };
-
+ 
     const handleLoginClick = (event) => {
         if (event) {
             event.preventDefault();
@@ -77,7 +72,7 @@ const LoginSignUp = () => {
             validateForm(event);
         }
     };
-
+ 
     return (
         <div className='container'>
             <div className="image-container">
@@ -85,14 +80,15 @@ const LoginSignUp = () => {
             </div>
             <div className='inputs'>
                 <div className='header'>
-                    <div className='text'>{action}</div>
-                    <div className='underline'></div>
+                    <div className={action === 'Login' ? 'textLogin' : 'text'}>
+                        {action}
+                    </div>
                 </div>
                 {action === 'Login' ? <div></div> : <div className='input'>
                     <img src={user_icon} alt='' />
                     <input type='text' placeholder='Full Name' value={fullName} onChange={(e) => setFullName(e.target.value)} />
                 </div>}
-
+ 
                 <div className='input'>
                     <img src={email_icon} alt='' />
                     <input type='email' placeholder='Email Address' value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -103,13 +99,13 @@ const LoginSignUp = () => {
                 </div>
                 {action === 'Login' && <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
                 <div className='submit-container'>
-                    <div className={action === 'Login' ? 'submit gray' : 'submit'} onClick={(e) => {
+                    <div className={`submit ${action === 'Login' ? 'gray' : ''}`} onClick={(e) => {
                         setAction('Create Account');
                         if (action === 'Create Account') {
                             handleSignUpClick(e);
                         }
                     }}>Sign Up</div>
-                    <div className={action === 'Create Account' ? 'submit gray' : 'submit'} onClick={(e) => {
+                    <div className={`submit ${action === 'Create Account' ? 'gray' : ''}`} onClick={(e) => {
                         setAction('Login');
                         if (action === 'Login') {
                             handleLoginClick(e);
@@ -120,5 +116,5 @@ const LoginSignUp = () => {
         </div>
     );
 }
-
+ 
 export default LoginSignUp;

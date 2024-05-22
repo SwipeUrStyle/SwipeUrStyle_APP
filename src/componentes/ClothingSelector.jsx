@@ -9,38 +9,41 @@ const ClothingSelector = () => {
   const [selectedBottom, setSelectedBottom] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
 
-  const fetchImage = async (imageName, headers) => {
-    const response = await fetch(`https://swipeurstyleback.azurewebsites.net/image/${imageName}`, { headers });
-    const blob = await response.blob();
-    return URL.createObjectURL(blob);
-  };
 
-  const fetchAllImages = async (items, headers) => {
-    return Promise.all(items.map(async item => {
-      const imageUrl = await fetchImage(item.imageName, headers);
-      return imageUrl;
-    }));
-  };
+
 
   useEffect(() => {
     const fetchData = async () => {
+      const fetchImage = async (imageName, headers) => {
+        const response = await fetch(`https://swipeurstyleback.azurewebsites.net/image/${imageName}`, { headers });
+        const blob = await response.blob();
+        return URL.createObjectURL(blob);
+      };
+  
+      const fetchAllImages = async (items, headers) => {
+        return Promise.all(items.map(async item => {
+          const imageUrl = await fetchImage(item.imageName, headers);
+          return imageUrl;
+        }));
+      };
+  
       try {
         const token = localStorage.getItem('authToken');
         const headers = {
           'authToken': token
         };
-
+  
         const response = await fetch('https://swipeurstyleback.azurewebsites.net/garments', { headers });
         const data = await response.json();
-
+  
         const topsData = data.filter(item => item.category === 'TOP');
         const bottomsData = data.filter(item => item.category === 'BOTTOM');
         const shoesData = data.filter(item => item.category === 'SHOES');
-
+  
         const topsImages = await fetchAllImages(topsData, headers);
         const bottomsImages = await fetchAllImages(bottomsData, headers);
         const shoesImages = await fetchAllImages(shoesData, headers);
-
+  
         setTops(topsImages);
         setBottoms(bottomsImages);
         setShoes(shoesImages);
@@ -48,9 +51,10 @@ const ClothingSelector = () => {
         console.error('Error fetching garments:', error);
       }
     };
-
+  
     fetchData();
   }, []);
+  
   
 
   const changeClothing = (type, direction) => {
