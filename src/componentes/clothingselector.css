@@ -1,3 +1,16 @@
+
+@font-face {
+  font-family: 'Now-Regular'; /* Nombre de la fuente */
+  src: url('../now/Now-Regular.otf') format('opentype');
+  font-family: 'Now-Bold'; /* Nombre de la fuente */
+  src: url('../now/Now-Bold.otf') format('opentype');
+  font-family: 'Now-Medium'; /* Nombre de la fuente */
+  src: url('../now/Now-Medium.otf') format('opentype');
+  font-family: 'NowAlt-Light'; /* Nombre de la fuente */
+  src: url('../now/NowAlt-Light.otf') format('opentype');
+
+}
+
 .containerSelector {
   display: flex;
   flex-direction: column;
@@ -18,6 +31,7 @@
   color: gray;
   font-size: 24px; 
   transition: 0.3s; 
+  font-family: 'Now-Medium';
 }
 
 .button:hover {
@@ -43,15 +57,16 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 19px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 25px;
+  font-family: 'Now-Medium';
 }
 
 .choose-button:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: #000000e1;
+  color: #fff;
 }
 
 

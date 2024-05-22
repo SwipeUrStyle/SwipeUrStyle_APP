@@ -80,8 +80,9 @@ const LoginSignUp = () => {
             </div>
             <div className='inputs'>
                 <div className='header'>
-                    <div className='text'>{action}</div>
-                    <div className='underline'></div>
+                    <div className={action === 'Login' ? 'textLogin' : 'text'}>
+                        {action}
+                    </div>
                 </div>
                 {action === 'Login' ? <div></div> : <div className='input'>
                     <img src={user_icon} alt='' />
@@ -98,13 +99,13 @@ const LoginSignUp = () => {
                 </div>
                 {action === 'Login' && <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
                 <div className='submit-container'>
-                    <div className={action === 'Login' ? 'submit gray' : 'submit'} onClick={(e) => {
+                    <div className={`submit ${action === 'Login' ? 'gray' : ''}`} onClick={(e) => {
                         setAction('Create Account');
                         if (action === 'Create Account') {
                             handleSignUpClick(e);
                         }
                     }}>Sign Up</div>
-                    <div className={action === 'Create Account' ? 'submit gray' : 'submit'} onClick={(e) => {
+                    <div className={`submit ${action === 'Create Account' ? 'gray' : ''}`} onClick={(e) => {
                         setAction('Login');
                         if (action === 'Login') {
                             handleLoginClick(e);

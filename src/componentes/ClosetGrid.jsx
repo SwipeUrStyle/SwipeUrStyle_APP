@@ -143,7 +143,7 @@ const ClosetGrid = () => {
           return (
             <div key={outfit.id} className="outfit-item" style={{ position: 'relative', textAlign: 'center' }}>
               {imageUrl ? (
-                <img src={imageUrl} alt={outfit.name} style={{ width: '200px', height: '200px', marginTop: '-50px' }} />
+                <img src={imageUrl} alt={outfit.name} style={{ width: '200px', height: '200px', marginTop: '-30px' }} />
               ) : (
                 <p>Loading image...</p>
               )}

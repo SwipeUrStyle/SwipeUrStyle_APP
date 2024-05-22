@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Now-Regular'; /* Nombre de la fuente */
+  src: url('../now/Now-Regular.otf') format('opentype');
+  font-family: 'Now-Bold'; /* Nombre de la fuente */
+  src: url('../now/Now-Bold.otf') format('opentype');
+  font-family: 'Now-Medium'; /* Nombre de la fuente */
+  src: url('../now/Now-Medium.otf') format('opentype');
+  font-family: 'NowAlt-Light'; /* Nombre de la fuente */
+  src: url('../now/NowAlt-Light.otf') format('opentype');
+}
+
 .Options {
   display: flex;
   justify-content: space-between;
@@ -9,13 +20,14 @@
   flex: 1;
   border: none;
   padding: 5px;
-  font-size: 14px; /* Reducir el tamaño del texto del botón */
+  font-size: 20px; /* Reducir el tamaño del texto del botón */
   text-align: center;
   background-color: #fff;
   color: #ccc; /* Color gris para el botón no seleccionado */
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Arial'; 
+  font-family: 'Now-Medium'
 }
 
 .btn:hover {
