@@ -5,6 +5,7 @@ import email_icon from '../imagenes/email.png';
 import password_icon from '../imagenes/password.png';
 import login_image from '../imagenes/Login.png';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const LoginSignUp = () => {
     const [action, setAction] = useState('Create Account');
@@ -42,20 +43,19 @@ const LoginSignUp = () => {
             }
 
             if (autentificado) {
+                swal('Good Job!', 'Welcome Again', 'success');
                 navigate('/Styling/Swipe ur syle');
             } else {
-                alert('Error al ingresar');
+                swal('Oups!', 'Incorrect Email or Passwork ', 'error');
             }
         } catch (error) {
-            console.error('Error during authentication:', error);
-            alert('Error during authentication. Please try again.');
+            swal('Oups!', 'Incorrect Email or Passwork ', 'error');
         }
     }
 
     const handleSignUpClick = () => {
         if (!fullName || !email || !password) {
-            alert('Please fill in all fields.');
-            return;
+            swal('Please fill in all fields', '', 'warning');
         } else {
             validateForm();
         }
@@ -66,7 +66,7 @@ const LoginSignUp = () => {
             event.preventDefault();
         }
         if (!email || !password) {
-            alert('Please fill in both email and password fields.');
+            swal('Please fill in both email and password fields.', 'We can not continue without knowing you :(', 'warning');
             return;
         } else {
             validateForm(event);
@@ -99,18 +99,20 @@ const LoginSignUp = () => {
                 </div>
                 {action === 'Login' && <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
                 <div className='submit-container'>
-                    <div className={`submit ${action === 'Login' ? 'gray' : ''}`} onClick={(e) => {
-                        setAction('Create Account');
-                        if (action === 'Create Account') {
-                            handleSignUpClick(e);
-                        }
-                    }}>Sign Up</div>
-                    <div className={`submit ${action === 'Create Account' ? 'gray' : ''}`} onClick={(e) => {
-                        setAction('Login');
-                        if (action === 'Login') {
-                            handleLoginClick(e);
-                        }
-                    }}>Login</div>
+                    <div className='submit-container'>
+                        <button className={`submit ${action === 'Login' ? 'gray' : ''}`} onClick={(e) => {
+                            setAction('Create Account');
+                            if (action === 'Create Account') {
+                                handleSignUpClick();
+                            }
+                        }}>Sign Up</button>
+                        <button className={`submit ${action === 'Create Account' ? 'gray' : ''}`} onClick={(e) => {
+                            setAction('Login');
+                            if (action === 'Login') {
+                                handleLoginClick(e);
+                            }
+                        }}>Login</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,8 +4,7 @@ import './options.css';
 
 function AcountOptions() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [activeButton, setActiveButton] = useState(location.pathname);
+  const [activeButton, setActiveButton] = useState('Account');
 
   const redireccionar = (ruta) => {
     setActiveButton(ruta);

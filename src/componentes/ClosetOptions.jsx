@@ -4,8 +4,7 @@ import './options.css';
 
 function ClosetOptions() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [activeButton, setActiveButton] = useState(location.pathname);
+  const [activeButton, setActiveButton] = useState('My Closet');
 
   const redireccionar = (ruta) => {
     setActiveButton(ruta);

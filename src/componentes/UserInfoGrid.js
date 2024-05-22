@@ -12,7 +12,7 @@ const UserInfoGrid = () => {
         <div className="user-grid-item">Email:</div>
         <div className="user-grid-item">Privacy:</div>
         <div className="user-grid-item">Password:</div>
-        <div className="user-grid-item">Delete Account</div>
+        <button className="gray-button">Delete Account</button>
       </div>
     </div>
   );

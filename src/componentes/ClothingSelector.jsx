@@ -8,10 +8,6 @@ const ClothingSelector = () => {
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottom, setSelectedBottom] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
-
-
-
-
   useEffect(() => {
     const fetchData = async () => {
       const fetchImage = async (imageName, headers) => {
@@ -19,31 +15,31 @@ const ClothingSelector = () => {
         const blob = await response.blob();
         return URL.createObjectURL(blob);
       };
-  
+
       const fetchAllImages = async (items, headers) => {
         return Promise.all(items.map(async item => {
           const imageUrl = await fetchImage(item.imageName, headers);
           return imageUrl;
         }));
       };
-  
+
       try {
         const token = localStorage.getItem('authToken');
         const headers = {
           'authToken': token
         };
-  
+
         const response = await fetch('https://swipeurstyleback.azurewebsites.net/garments', { headers });
         const data = await response.json();
-  
+
         const topsData = data.filter(item => item.category === 'TOP');
         const bottomsData = data.filter(item => item.category === 'BOTTOM');
         const shoesData = data.filter(item => item.category === 'SHOES');
-  
+
         const topsImages = await fetchAllImages(topsData, headers);
         const bottomsImages = await fetchAllImages(bottomsData, headers);
         const shoesImages = await fetchAllImages(shoesData, headers);
-  
+
         setTops(topsImages);
         setBottoms(bottomsImages);
         setShoes(shoesImages);
@@ -51,11 +47,11 @@ const ClothingSelector = () => {
         console.error('Error fetching garments:', error);
       }
     };
-  
+
     fetchData();
   }, []);
-  
-  
+
+
 
   const changeClothing = (type, direction) => {
     let selected;
@@ -84,38 +80,41 @@ const ClothingSelector = () => {
     <div className="containerSelector">
       <div className="row">
         {tops.length > 0 && <>
-          <img className="top-item" src={tops[(selectedTop + tops.length - 2) % tops.length]} alt="top"/>
-          <img className="top-item" src={tops[(selectedTop + tops.length - 1) % tops.length]} alt="top"/>
+          <img className="top-item" src={tops[(selectedTop + tops.length - 2) % tops.length]} alt="top" />
+          <img className="top-item" src={tops[(selectedTop + tops.length - 1) % tops.length]} alt="top" />
           <button className="button" onClick={() => changeClothing('top', 'next')}>←</button>
-          <img className="top-item" src={tops[selectedTop]} alt="top"/>
+          <img className="top-item" src={tops[selectedTop]} alt="top" />
           <button className="button" onClick={() => changeClothing('top', 'prev')}>→</button>
-          <img className="top-item" src={tops[(selectedTop + 1) % tops.length]} alt="top"/>
-          <img className="top-item" src={tops[(selectedTop + 2) % tops.length]} alt="top"/>
+          <img className="top-item" src={tops[(selectedTop + 1) % tops.length]} alt="top" />
+          <img className="top-item" src={tops[(selectedTop + 2) % tops.length]} alt="top" />
         </>}
       </div>
       <div className="row">
         {bottoms.length > 0 && <>
-          <img className="bottom-item" src={bottoms[(selectedBottom + bottoms.length - 2) % bottoms.length]} alt="bottom"/>
-          <img className="bottom-item" src={bottoms[(selectedBottom + bottoms.length - 1) % bottoms.length]} alt="bottom"/>
+          <img className="bottom-item" src={bottoms[(selectedBottom + bottoms.length - 2) % bottoms.length]} alt="bottom" />
+          <img className="bottom-item" src={bottoms[(selectedBottom + bottoms.length - 1) % bottoms.length]} alt="bottom" />
           <button className="button" onClick={() => changeClothing('bottom', 'next')}>←</button>
-          <img className="bottom-item" src={bottoms[selectedBottom]} alt="bottom"/>
+          <img className="bottom-item" src={bottoms[selectedBottom]} alt="bottom" />
           <button className="button" onClick={() => changeClothing('bottom', 'prev')}>→</button>
-          <img className="bottom-item" src={bottoms[(selectedBottom + 1) % bottoms.length]} alt="bottom"/>
-          <img className="bottom-item" src={bottoms[(selectedBottom + 2) % bottoms.length]} alt="bottom"/>
+          <img className="bottom-item" src={bottoms[(selectedBottom + 1) % bottoms.length]} alt="bottom" />
+          <img className="bottom-item" src={bottoms[(selectedBottom + 2) % bottoms.length]} alt="bottom" />
         </>}
       </div>
       <div className="row">
         {shoes.length > 0 && <>
-          <img className="shoe-item" src={shoes[(selectedShoes + shoes.length - 2) % shoes.length]} alt="shoes"/>
-          <img className="shoe-item" src={shoes[(selectedShoes + shoes.length - 1) % shoes.length]} alt="shoes"/>
+          <img className="shoe-item" src={shoes[(selectedShoes + shoes.length - 2) % shoes.length]} alt="shoes" />
+          <img className="shoe-item" src={shoes[(selectedShoes + shoes.length - 1) % shoes.length]} alt="shoes" />
           <button className="button" onClick={() => changeClothing('shoes', 'next')}>←</button>
-          <img className="shoe-item" src={shoes[selectedShoes]} alt="shoes"/>
+          <img className="shoe-item" src={shoes[selectedShoes]} alt="shoes" />
           <button className="button" onClick={() => changeClothing('shoes', 'prev')}>→</button>
-          <img className="shoe-item" src={shoes[(selectedShoes + 1) % shoes.length]} alt="shoes"/>
-          <img className="shoe-item" src={shoes[(selectedShoes + 2) % shoes.length]} alt="shoes"/>
+          <img className="shoe-item" src={shoes[(selectedShoes + 1) % shoes.length]} alt="shoes" />
+          <img className="shoe-item" src={shoes[(selectedShoes + 2) % shoes.length]} alt="shoes" />
         </>}
       </div>
-      <button className="choose-button">Choose</button>
+      <div className="button-container">
+        <button className="save-button">Save</button>
+        <button className="schedule-button">Schedule</button>
+      </div>
     </div>
   );
 };

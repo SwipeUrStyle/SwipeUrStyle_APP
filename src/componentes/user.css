@@ -1,26 +1,36 @@
-
 @font-face {
-  font-family: 'Now-Regular'; /* Nombre de la fuente */
+  font-family: 'Now-Regular';
   src: url('../now/Now-Regular.otf') format('opentype');
-  font-family: 'Now-Bold'; /* Nombre de la fuente */
+}
+ 
+@font-face {
+  font-family: 'Now-Bold';
   src: url('../now/Now-Bold.otf') format('opentype');
-  font-family: 'Now-Medium'; /* Nombre de la fuente */
+}
+ 
+@font-face {
+  font-family: 'Now-Medium';
   src: url('../now/Now-Medium.otf') format('opentype');
 }
+ 
+.user {
+  font-family: 'Now-Medium', sans-serif;
+}
+ 
+/* Aquí están todas las otras reglas CSS que ya tienes */
 .user-grid-container {
   margin-top: 20px;
   display: grid;
-  width: 60%; /* Ocupa el 60% del ancho */
+  width: 70%; /* Ocupa el 60% del ancho */
   float: left; /* Flotar a la izquierda */
-  
 }
-
+ 
 .user-info {
-  width: 40%; /* Ocupa el 40% del ancho */
+  width: 30%; /* Ocupa el 40% del ancho */
   float: left; /* Flotar a la izquierda */
   margin-top: 20px;
 }
-
+ 
 .user-grid-item {
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
@@ -30,33 +40,52 @@
   align-items: flex-start;
   width: 100%;
 }
+.gray-button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 20px; /* Para hacerlo redondo */
+  padding: 10px 20px; /* Ajusta el padding según sea necesario */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  margin-top: 25px;
+  margin-left: 500px;
+  font-size: 18px;
+  width: 200px; /* Ajustar el ancho */
+  height: 50px; /* Ajustar la altura */
+}
 
+.gray-button:hover {
+  background-color: #e65a4b; /* Cambia el color al pasar el ratón */
+}
 .user-details-container {
   display: flex;
   flex-direction: column;
   align-items: center; /* Alinea los elementos horizontalmente */
 }
-
+ 
 .user-details {
   text-align: center; /* Alinea el texto al centro */
 }
-
+ 
 .update-button {
   margin-top: 10px; /* Espacio superior entre los detalles del usuario y el botón */
+  margin-left: -47px;
+  font-size: 18px;
+ 
 }
-
+ 
 .user-avatar img {
   width: 100%; /* Ajustar la imagen al 100% del ancho del contenedor */
   height: auto; /* Altura automática para mantener la proporción */
 }
-
+ 
 /* Media query para pantallas de hasta 768px de ancho */
 @media only screen and (max-width: 768px) {
   .user-grid-item {
     padding: 20px; /* Reducir el padding para pantallas más pequeñas */
   }
 }
-
+ 
 /* Media query para pantallas de hasta 576px de ancho */
 @media only screen and (max-width: 576px) {
   .user-grid-item {
@@ -64,3 +93,4 @@
     align-items: center; /* Centrar los elementos en pantallas más pequeñas */
   }
 }
+ 

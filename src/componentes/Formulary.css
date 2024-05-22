@@ -24,7 +24,7 @@
     color: #FFFFFF;
     border: none;
     transition-duration: 0.4s;
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
     
   }
 
@@ -34,7 +34,7 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
 
 /*Centrar campos*/
@@ -43,10 +43,10 @@
     display: block;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
   }
 
-.add-clothes-button, .close-button, .close-button-modal {
+  .add-clothes-button, .close-button, .close-button-modal {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -55,17 +55,19 @@
     color: #FFFFFF;
     border: none;
     transition-duration: 0.4s;
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
-
+ 
 .add-clothes-button:hover, .close-button:hover, .close-button-modal:hover {
-    background-color: #6200ff; /* Cambio de color al pasar el mouse */
-    
+    background-color: rgb(87, 86, 178);
+    color: #FFFFFF;
+   
 }
 
 
 .add-clothes-modal-button:hover {
-    background-color: #6200ff; /* Cambio de color al pasar el mouse */
+    background-color: rgb(87, 86, 178);
+    color: #FFFFFF;
 }
 
 /* Nueva clase para el botón de cerrar con color diferente */
@@ -78,7 +80,7 @@
     color: #FFFFFF;
     border: none;
     transition-duration: 0.4s;
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
 .close-button-modal-different-color:hover {
     background-color: #747475; /* Cambia el color de fondo al pasar el mouse */
@@ -91,13 +93,13 @@
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     padding: 20px; /* Espaciado interno */
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
 
 .modal-header {
     border-bottom: none; /* Sin borde en la parte inferior del encabezado */
     padding-bottom: 0; /* Espaciado inferior reducido */
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
 
 .modal-body {
@@ -111,14 +113,14 @@
 .input-group-text {
     background-color: #f0f0f0; /* Fondo gris claro para el texto del grupo de entrada */
     border: none; /* Sin borde */
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
 
 .form-control {
     border: 1px solid #ccc; /* Borde del campo de entrada */
     border-radius: 5px; /* Bordes redondeados */
     padding: 10px; /* Espaciado interno */
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
 
 .btn-success {
@@ -130,11 +132,12 @@
     font-size: 16px; /* Tamaño de fuente */
     cursor: pointer; /* Cambio de cursor al pasar el mouse */
     transition: background-color 0.3s ease; /* Transición suave */
-    font-family: 'Now-Medium';
+    font-family: 'Now-Medium', sans-serif;
 }
 
 .btn-success:hover {
-    background-color: #6200ff; /* Cambio de color al pasar el mouse */
+    background-color: rgb(87, 86, 178);
+    color: #FFFFFF;
 }
 
 .btn-secondary {
@@ -150,4 +153,8 @@
 
 .btn-secondary:hover {
     background-color: #999; /* Cambio de color al pasar el mouse */
+}
+.white-text {
+    color: #FFFFFF;
+    font-size: 12px;
 }

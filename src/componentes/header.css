@@ -24,14 +24,14 @@
 .name-app {
   display: flex;
   align-items: center;
-  position: relative;
+  position: relative; /* Añade esta línea */
 }
  
 .name {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   color: #000000;
-  font-family: 'Now-Bold'
+  font-family: 'Now-Bold', sans-serif; 
 }
  
 .circle {
@@ -40,21 +40,38 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  
 }
  
 .circle-left {
-  left: calc(0% - 15px); /* La mitad del ancho del círculo */
-  top: 70%; /* Ajusta este valor para mover el círculo hacia abajo */
-  width: 20px; /* Cambia este valor al tamaño deseado */
-  height: 20px; /* Cambia este valor al tamaño deseado */
+  left: calc(0% - 17px); /* La mitad del ancho del círculo */
+  top: 50%; /* Ajusta este valor para mover el círculo hacia abajo */
+  width: 10px; /* Cambia este valor al tamaño deseado */
+  height: 10px; /* Cambia este valor al tamaño deseado */
 }
  
-.circle-right {
+ 
+.circle-right-1  {
   width: 10px;
   height: 10px;
-  right: calc(100% - 280px); /* La mitad del ancho del círculo */
+  right: calc(100% - 230px); /* La mitad del ancho del círculo */
+  top: 45%
 }
+ 
+.circle-right-2  {
+  width: 10px;
+  height: 10px;
+  right: calc(100% - 200px); /* La mitad del ancho del círculo */
+  top: 21%
+}
+ 
+.circle-right-3  {
+  width: 18px;
+  height: 18px;
+  right: calc(100% - 240px); /* La mitad del ancho del círculo */
+  top: 18%
+}
+ 
+ 
  
 .navigation {
   display: flex;

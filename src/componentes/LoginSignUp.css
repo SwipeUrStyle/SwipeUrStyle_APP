@@ -132,6 +132,7 @@ body, * {
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
+    border: none;
 }
 
 .gray {

@@ -31,7 +31,7 @@
   color: gray;
   font-size: 24px; 
   transition: 0.3s; 
-  font-family: 'Now-Medium';
+  font-family: 'Now-Medium', sans-serif;
 }
 
 .button:hover {
@@ -57,7 +57,7 @@
 }
 
 
-.choose-button {
+.save-button {
   margin-top: 20px;
   padding: 10px 20px;
   border: none;
@@ -66,18 +66,50 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 19px;
+  font-size: 17px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 25px;
-  font-family: 'Now-Medium';
+  font-family: 'Now-Medium', sans-serif;
+  height: 40px;
+  width: 123px;
+}
+.schedule-button{
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 25px;
+  font-family: 'Now-Medium', sans-serif;
+  height: 40px;
+  width: 123px;
 }
 
-.choose-button:hover {
+schedule-button:hover{
   background-color: #000000e1;
   color: #fff;
 }
 
+.save-button:hover {
+  background-color: #000000e1;
+  color: #fff;
+}
+.button-container {
+  margin-top: 20px;
+  display: flex; /* Para mostrar los botones en línea */
+  justify-content: center; /* Para centrar los botones horizontalmente */
+}
+
+.save-button, .schedule-button {
+  margin: 0 10px; /* Ajustar el margen entre los botones */
+}
 
 @media (max-width: 600px) {
   .item {
