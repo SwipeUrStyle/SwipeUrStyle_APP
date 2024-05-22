@@ -15,28 +15,32 @@ const ClosetGrid = () => {
   const [images, setImages] = useState({});
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    const headers = {
-      'authToken': token
-    };
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+          'authToken': token
+        };
 
-    console.log('Headers being sent:', headers);
+        console.log('Headers being sent:', headers);
 
-    fetch('https://swipeurstyleback.azurewebsites.net/garments', { headers })
-      .then(response => response.json())
-      .then(data => {
+        const response = await fetch('https://swipeurstyleback.azurewebsites.net/garments', { headers });
+        const data = await response.json();
         setOutfits(data);
         setLike(Array(data.length).fill(false));
-        // Download images
-        data.forEach(outfit => {
-          fetch(`https://swipeurstyleback.azurewebsites.net/image/${outfit.imageName}`, { headers })
-            .then(response => response.blob())
-            .then(blob => {
-              const imageUrl = URL.createObjectURL(blob);
-              setImages(prevImages => ({ ...prevImages, [outfit.imageName]: imageUrl }));
-            })
-        });
-      })
+
+        for (const outfit of data) {
+          const imageResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/image/${outfit.imageName}`, { headers });
+          const blob = await imageResponse.blob();
+          const imageUrl = URL.createObjectURL(blob);
+          setImages(prevImages => ({ ...prevImages, [outfit.imageName]: imageUrl }));
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleLike = index => {

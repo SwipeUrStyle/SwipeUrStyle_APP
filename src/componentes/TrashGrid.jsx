@@ -7,27 +7,31 @@ const TrashGrid = () => {
   const daysLeft = 30;
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    const headers = {
-      'authToken': token
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+          'authToken': token
+        };
+
+        console.log('Headers being sent:', headers);
+
+        const response = await fetch('https://swipeurstyleback.azurewebsites.net/garments/trash', { headers });
+        const data = await response.json();
+        setItems(data);
+
+        for (const garment of data) {
+          const imageResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/image/${garment.imageName}`, { headers });
+          const blob = await imageResponse.blob();
+          const imageUrl = URL.createObjectURL(blob);
+          setImages(prevImages => ({ ...prevImages, [garment.imageName]: imageUrl }));
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
 
-    console.log('Headers being sent:', headers);
-
-    fetch('https://swipeurstyleback.azurewebsites.net/garments/trash', { headers })
-      .then(response => response.json())
-      .then(data => {
-        setItems(data);
-        // Download images
-        data.forEach(garment => {
-          fetch(`https://swipeurstyleback.azurewebsites.net/image/${garment.imageName}`, { headers })
-            .then(response => response.blob())
-            .then(blob => {
-              const UrlImage = URL.createObjectURL(blob);
-              setImages(prevImages => ({ ...prevImages, [garment.imageName]: UrlImage }));
-            })
-        });
-      })
+    fetchData();
   }, []);
 
   const restoreGarment = async (id) => {
