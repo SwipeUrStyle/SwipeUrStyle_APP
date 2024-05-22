@@ -87,8 +87,9 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    position: relative;
 }
- 
+
 .outfit-item:nth-child(5n) {
     border-right: none;
 }
@@ -109,7 +110,6 @@
     align-self: end;
     justify-self: center;
     grid-column: 1 / -1;
-    justify-self: center;
 }
  
  
@@ -142,9 +142,7 @@
     }
 }
  
-.outfit-item {
-    position: relative;
-  }
+
  
   .like-button {
     position: absolute;
@@ -168,7 +166,7 @@
 .add-clothes-button {
   padding: 10px 20px;
   font-size: 16px;
-  font-family: 'Now-Medium';
+  font-family: 'Now-Medium', sans-serif;
   cursor: pointer;
   align-self: end;
   justify-self: center;
@@ -199,7 +197,7 @@
 .update-button {
   padding: 10px 15px;
   font-size: 14px;
-  font-family: 'Now-Medium';
+  font-family: 'Now-Medium', sans-serif;
   background-color: rgb(112, 111, 229);
   color: #FFFFFF;
   border: none;
@@ -233,5 +231,5 @@
   max-width: 100%;
   font-size: 14px;
   margin-bottom: 80px;
-  font-family: 'Now-Medium';
+  font-family: 'Now-Medium', sans-serif;
 }

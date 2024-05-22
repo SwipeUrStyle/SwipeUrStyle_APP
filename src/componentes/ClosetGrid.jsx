@@ -65,18 +65,18 @@ const ClosetGrid = () => {
         buttons: true,
         dangerMode: true,
       });
-  
+
       if (willDelete) {
         const token = localStorage.getItem('authToken');
         const headers = {
           'authToken': token
         };
-  
+
         const response = await fetch(`https://swipeurstyleback.azurewebsites.net/garment/${id}`, {
           method: 'DELETE',
           headers: headers
         });
-  
+
         if (response.ok) {
           setOutfits(outfits.filter(outfit => outfit.id !== id));
           swal("Poof! Your garment has been deleted!", {
@@ -98,7 +98,7 @@ const ClosetGrid = () => {
       });
     }
   };
-  
+
 
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [updateClothing, setUpdateClothing] = useState('');
@@ -192,8 +192,12 @@ const ClosetGrid = () => {
               )}
               <p className="outfit-name" style={{ marginTop: '10px', textAlign: 'center' }}>{outfit.name}</p>
               <button className="update-button" style={{ position: 'absolute', bottom: '15px', left: '50%', transform: 'translateX(-50%)' }} onClick={() => handleOpenUpdateForm(index)}>Update</button>
-              <img src={require(`../imagenes/trash-icon.PNG`)} alt="delete" style={{ position: 'absolute', bottom: 10, right: 50 }} onClick={() => handleDelete(outfit.id)} />
-              <img src={require(`../imagenes/${like[index] ? 'like-blue' : 'like-grey'}.PNG`)} alt="save" style={{ position: 'absolute', bottom: 15, right: 10 }} onClick={() => handleLike(index)} />
+              <button style={{ position: 'absolute', bottom: 10, right: 50, border: 'none', background: 'none' }} onClick={() => handleDelete(outfit.id)}>
+                <img src={require(`../imagenes/trash-icon.PNG`)} alt="delete" />
+              </button>
+              <button style={{ position: 'absolute', bottom: 15, right: 10, border: 'none', background: 'none' }} onClick={() => handleLike(index)}>
+                <img src={require(`../imagenes/${like[index] ? 'like-blue' : 'like-grey'}.PNG`)} alt="save" />
+              </button>
             </div>
           );
 

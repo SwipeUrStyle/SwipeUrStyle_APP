@@ -1,9 +1,9 @@
 @font-face {
-    font-family: 'Now-Regular'; /* Nombre de la fuente */
+    font-family: 'Now-Regular';
     src: url('../now/Now-Regular.otf') format('opentype');
-    font-family: 'Now-Medium'; /* Nombre de la fuente */
+    font-family: 'Now-Medium';
     src: url('../now/Now-Medium.otf') format('opentype');
-    font-family: 'NowAlt-Light'; /* Nombre de la fuente */
+    font-family: 'NowAlt-Light';
     src: url('../now/NowAlt-Light.otf') format('opentype');
   }
  
@@ -12,8 +12,7 @@
     src: url('../now/Now-Bold.otf') format('opentype');
 }
  
- 
-/* Aplica la fuente a toda la aplicación */
+
 body, * {
     font-family: 'Now-Medium', sans-serif;
 }
@@ -51,16 +50,14 @@ body, * {
 .text {
     color: #404040;
     font-size: 40px;
-    font-family: 'Now-Bold'; /* Usa Now-Bold específicamente aquí */
+    font-family: 'Now-Bold', sans-serif;
     margin-left: -130px;
 }
 .textLogin {
     color: #404040;
     font-size: 40px;
-    font-family: 'Now-Bold'; /* Usa Now-Bold específicamente aquí */
+    font-family: 'Now-Bold', sans-serif;
     margin-left: -340px;
- 
- 
 }
  
 .underline {
