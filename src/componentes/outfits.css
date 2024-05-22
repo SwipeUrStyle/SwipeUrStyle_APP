@@ -6,15 +6,13 @@
   font-family: 'Now-Medium'; /* Nombre de la fuente */
   src: url('../now/Now-Medium.otf') format('opentype');
 }
- 
+
 .outfit-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 0px;
 }
- 
- 
  
 .trash-grid-container {
   display: grid;
@@ -48,7 +46,7 @@
 .restore-button {
   margin-top: 20px;
   padding: 10px 15px;
-  font-size: 10px;
+  font-size: 14px;
   align-self: end;
   border: none;
   justify-self: center;
@@ -68,8 +66,8 @@
  
 
 .restore-button:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: rgb(87, 86, 178);
+  color: #FFFFFF;
   position: absolute;
 }
  
@@ -93,29 +91,49 @@
 .outfit-item:nth-child(5n) {
     border-right: none;
 }
- 
-.more-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 25px;
-    align-self: end;
-    justify-self: center;
-    grid-column: 1 / -1;
+.outfits-item {
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 340px;
+  height: 360px;
 }
- 
- 
+.outfits-item:nth-child(5n) {
+  border-right: none;
+}
+.outfits-item img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.more-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 19px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 25px;
+  align-self: end;
+  justify-self: center;
+  grid-column: 1 / -1;
+}
+
+
 .more-button:hover {
-    background-color: #fff;
-    color: #000;
+  background-color: #000000d5;
+  color: #fff;
 }
  
  
@@ -208,12 +226,10 @@
 }
  
  
- 
 .update-button:hover {
-  background-color: #FFFFFF; /* Fondo blanco al pasar el mouse */
-  color: rgb(112, 111, 229); /* Texto azul morado al pasar el mouse */
+  background-color: rgba(113, 111, 229, 0.74);
+  color: #FFFFFF;
 }
- 
 
  
 .outfit-image {
@@ -228,8 +244,9 @@
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  max-width: 100%;
-  font-size: 14px;
-  margin-bottom: 80px;
+  max-width: 100%; /* Ajusta el ancho máximo del contenedor de nombre */
+  font-size: 14px; /* Ajusta el tamaño de letra del nombre de la imagen */
+  margin-bottom: 80px; /* Ajusta el margen inferior para separar el nombre del botón */
   font-family: 'Now-Medium', sans-serif;
 }
+

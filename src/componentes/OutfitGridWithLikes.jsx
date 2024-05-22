@@ -12,7 +12,7 @@ const OutfitGridWithLikes = () => {
   return (
     <div className="outfit-container">
       {outfits.slice(0, visibleCount).map((outfit, index) => (
-        <div key={index} className="outfit-item">
+        <div key={outfit} className="outfit-item">
           {outfit}
           <img src={require('../imagenes/like-blue.PNG')} alt="like" style={{position: 'absolute', bottom: 0, right: 0}}/>
         </div>

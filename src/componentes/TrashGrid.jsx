@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './outfits.css';
-
+import swal from 'sweetalert';
 const TrashGrid = () => {
   const [items, setItems] = useState([]);
   const [images, setImages] = useState({});
@@ -35,6 +35,15 @@ const TrashGrid = () => {
   }, []);
 
   const restoreGarment = async (id) => {
+    const willRestore = await swal({
+      title: "Are you sure?",
+      text: "You will recover this garment!",
+      icon: "info",
+      buttons: true,
+      dangerMode: true,
+    });
+
+    if (willRestore) {
     const token = localStorage.getItem('authToken');
     const headers = {
       'authToken': token,
@@ -50,13 +59,14 @@ const TrashGrid = () => {
       if (response.ok) {
         // Optionally, you can refresh the trash items or remove the restored item from the state
         setItems(items.filter(item => item.id !== id));
+        swal('Garment restore succesfull', 'Congratulations', 'success');
       } else {
-        console.error('Failed to restore garment');
+        swal('Failed to restore garment');
       }
     } catch (error) {
-      console.error('Error restoring garment:', error);
+      swal('Error restoring garment:', error);
     }
-  };
+  }};
 
   return (
     <div>
@@ -64,8 +74,8 @@ const TrashGrid = () => {
         Clothes deleted from the closet stay in the paper bin for {daysLeft} days before being permanently deleted.
       </div>
       <div className="trash-grid-container">
-        {items.map((outfit, index) => (
-          <div key={index} className="trash-item">
+        {items.map((outfit) => (
+          <div key={outfit.id} className="trash-item">
             {images[outfit.imageName] && (
               <img
                 src={images[outfit.imageName]}

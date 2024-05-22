@@ -191,7 +191,7 @@ const ClosetGrid = () => {
                 <p>Loading image...</p>
               )}
               <p className="outfit-name" style={{ marginTop: '10px', textAlign: 'center' }}>{outfit.name}</p>
-              <button className="update-button" style={{ position: 'absolute', bottom: '15px', left: '50%', transform: 'translateX(-50%)' }} onClick={() => handleOpenUpdateForm(index)}>Update</button>
+              <button className="update-button" style={{ position: 'absolute', bottom: '15px', left: '61%', transform: 'translateX(-50%)' }} onClick={() => handleOpenUpdateForm(index)}>Update</button>
               <button style={{ position: 'absolute', bottom: 10, right: 50, border: 'none', background: 'none' }} onClick={() => handleDelete(outfit.id)}>
                 <img src={require(`../imagenes/trash-icon.PNG`)} alt="delete" />
               </button>
@@ -221,12 +221,15 @@ const ClosetGrid = () => {
             outline: 'none',
             padding: '5px',
             width: '840px',
-            height: '402px',
+            height: '425px',
           }
         }}
       >
         <div className="modal-content">
-          <h2>Add Clothes</h2>
+          <button className="centered-purple-button">
+            Add Clothes
+          </button>
+          <h2 className="white-text">Update Clothes</h2>
           <div className='input-group mb-3 centered-input'>
             <span className='input-group-text'><i className='fa-solid fa-tshirt'></i></span>
             <input type='text' id='clothing' className='form-control' placeholder='Clothes' value={clothing1} onChange={(e) => setClothing1(e.target.value)} />
@@ -275,7 +278,11 @@ const ClosetGrid = () => {
         }}
       >
         <div className="modal-content">
-          <h2>Update Clothes</h2>
+
+          <button className="centered-purple-button">
+            Update Clothes
+          </button>
+          <h2 className="white-text">Update Clothes</h2>
           <div className='input-group mb-3 centered-input'>
             <span className='input-group-text'><i className='fa-solid fa-tshirt'></i></span>
             <input type='text' id='clothing' className='form-control' placeholder='Clothes' value={updateClothing} onChange={(e) => setUpdateClothing(e.target.value)} />

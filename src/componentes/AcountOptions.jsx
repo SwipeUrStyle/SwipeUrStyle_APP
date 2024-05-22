@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import './options.css';
 
 function AcountOptions() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [activeButton, setActiveButton] = useState(location.pathname);
+  const [activeButton, setActiveButton] = useState('Account');
 
   const redireccionar = (ruta) => {
     setActiveButton(ruta);

@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'Now-Regular'; /* Nombre de la fuente */
+  src: url('../now/Now-Regular.otf') format('opentype');
+  font-family: 'Now-Medium'; /* Nombre de la fuente */
+  src: url('../now/Now-Medium.otf') format('opentype');
+  font-family: 'NowAlt-Light'; /* Nombre de la fuente */
+  src: url('../now/NowAlt-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Now-Bold';
+  src: url('../now/Now-Bold.otf') format('opentype');
+}
+
+
 .Header {
   background-color: #ffffff;
   display: flex;
@@ -5,77 +20,97 @@
   align-items: center;
   padding: 20px;
 }
-
+ 
 .name-app {
   display: flex;
   align-items: center;
-  position: relative;
+  position: relative; /* Añade esta línea */
 }
-
+ 
 .name {
-  font-size: 30px; 
+  font-size: 30px;
   font-weight: bold;
   color: #000000;
-  font-family: 'Arial';  
+  font-family: 'Now-Bold', sans-serif; 
 }
-
+ 
 .circle {
-
   background-color: rgb(112, 111, 229);
   border-radius: 50%;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
-
+ 
 .circle-left {
-  left: calc(0% - 15px); /* La mitad del ancho del círculo */
-  top: 70%; /* Ajusta este valor para mover el círculo hacia abajo */
-  width: 20px; /* Cambia este valor al tamaño deseado */
-  height: 20px; /* Cambia este valor al tamaño deseado */
+  left: calc(0% - 17px); /* La mitad del ancho del círculo */
+  top: 50%; /* Ajusta este valor para mover el círculo hacia abajo */
+  width: 10px; /* Cambia este valor al tamaño deseado */
+  height: 10px; /* Cambia este valor al tamaño deseado */
 }
-
-.circle-right {
+ 
+ 
+.circle-right-1  {
   width: 10px;
   height: 10px;
-  right: calc(100% - 225px); /* La mitad del ancho del círculo */
+  right: calc(100% - 230px); /* La mitad del ancho del círculo */
+  top: 45%
 }
-
+ 
+.circle-right-2  {
+  width: 10px;
+  height: 10px;
+  right: calc(100% - 200px); /* La mitad del ancho del círculo */
+  top: 21%
+}
+ 
+.circle-right-3  {
+  width: 18px;
+  height: 18px;
+  right: calc(100% - 240px); /* La mitad del ancho del círculo */
+  top: 18%
+}
+ 
+ 
+ 
 .navigation {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   align-items: center;
+  margin-right: 60px;
 }
-
+ 
 .navigation ul {
   display: flex;
   justify-content: space-around;
   width: 50%;
 }
-
+ 
 .navigation li {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px; 
+  flex-direction: column; /* Alinea el contenido en columna */
+  align-items: center; /* Centra horizontalmente */
+  margin: 0 10px;
 }
-
+ 
 .navigation img {
-  width: 50px; 
+  width: 50px;
   height: 50px;
-  margin-right: 15px;
+  margin-bottom: 5px; /* Agrega espacio entre la imagen y el texto */
 }
-
+ 
 .navigation span {
-  font-size: 18px; 
+  font-size: 18px;
   color: #808080;
+  text-align: center; /* Alinea el texto al centro */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
 }
-
+ 
 .navigation a {
   text-decoration: none;
   color: #808080;
 }
-
+ 
 .navigation a:hover {
   text-decoration: underline;
 }
