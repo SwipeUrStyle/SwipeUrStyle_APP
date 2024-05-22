@@ -51,13 +51,13 @@ body, * {
 .text {
     color: #404040;
     font-size: 40px;
-    font-family: 'Now-Bold'; /* Usa Now-Bold específicamente aquí */
+    font-family: 'Now-Bold', sans-serif; 
     margin-left: -130px; 
 }
 .textLogin {
     color: #404040;
     font-size: 40px;
-    font-family: 'Now-Bold'; /* Usa Now-Bold específicamente aquí */
+    font-family: 'Now-Bold', sans-serif;
     margin-left: -340px; 
 
 

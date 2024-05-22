@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import './options.css';
  
 function Options() {
   const navigate = useNavigate();
-  const location = useLocation();
   const [activeButton, setActiveButton] = useState('Swipe ur syle');
  
   const redireccionar = (ruta) => {

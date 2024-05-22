@@ -26,8 +26,7 @@
   color: #ccc; /* Color gris para el botón no seleccionado */
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Arial'; 
-  font-family: 'Now-Medium'
+  font-family: 'Now-Medium', sans-serif
 }
 
 .btn:hover {

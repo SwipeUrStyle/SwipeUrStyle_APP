@@ -39,7 +39,7 @@ html, body {
   max-height: 100vh; /* Establecer una altura máxima del 100% del viewport height */
   background-color: white;
   line-height: 1.125em;
-  font-family: 'NowAlt-Medium';
+  font-family: 'NowAlt-Medium', sans-serif;
 
 }
   /* Personalización de los días del calendario */
@@ -49,7 +49,7 @@ html, body {
       padding: 4.2vw;
       background-color: #FFFFFF;
       height: 100%;
-      font-family: 'NowAlt-Medium';
+      font-family: 'NowAlt-Medium', sans-serif;
       max-height: 100vh;
       position: relative;
       border-right: 0.5px solid #ccc;
@@ -106,7 +106,7 @@ html, body {
   position: absolute;
   top: 5px; /* Ajusta la posición vertical del número */
   right: 5px; /* Ajusta la posición horizontal del número */
-  font-family: 'NowAlt-Medium';
+  font-family: 'NowAlt-Medium', sans-serif;
  
 }
 
@@ -119,7 +119,7 @@ html, body {
   border: none; /* Sin borde */
   cursor: pointer; /* Cursor de puntero */
   padding: 5px; /* Espaciado interno */
-  font-family: 'NowAlt-Medium';
+  font-family: 'NowAlt-Medium', sans-serif;
 }
 
 /* Cambio de estilos al pasar el mouse sobre los botones de cambio de mes y año */

@@ -67,7 +67,6 @@ const LoginSignUp = () => {
         }
         if (!email || !password) {
             swal('Please fill in both email and password fields.', 'We can not continue without knowing you :(', 'warning');
-            return;
         } else {
             validateForm(event);
         }
