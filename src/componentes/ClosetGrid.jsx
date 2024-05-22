@@ -59,7 +59,7 @@ const ClosetGrid = () => {
     setShowForm(false);
   };
   const handleDelete = (id) => {
- 
+
     swal({
       title: "Are you sure?",
       text: "You will not be able to recover this garment!",
@@ -67,42 +67,42 @@ const ClosetGrid = () => {
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        // Si el usuario confirma la eliminación, realiza la solicitud de eliminación
-        const token = localStorage.getItem('authToken');
-        const headers = {
-          'authToken': token
-        };
+      .then((willDelete) => {
+        if (willDelete) {
+          // Si el usuario confirma la eliminación, realiza la solicitud de eliminación
+          const token = localStorage.getItem('authToken');
+          const headers = {
+            'authToken': token
+          };
 
-        fetch(`https://swipeurstyleback.azurewebsites.net/garment/${id}`, {
-          method: 'DELETE',
-          headers: headers
-        })
-          .then(response => {
-            if (response.ok) {
-              setOutfits(outfits.filter(outfit => outfit.id !== id));
-              swal("Poof! Your garment has been deleted!", {
-                icon: "success",
-              });
-            } else {
-              console.error('Failed to delete garment');
+          fetch(`https://swipeurstyleback.azurewebsites.net/garment/${id}`, {
+            method: 'DELETE',
+            headers: headers
+          })
+            .then(response => {
+              if (response.ok) {
+                setOutfits(outfits.filter(outfit => outfit.id !== id));
+                swal("Poof! Your garment has been deleted!", {
+                  icon: "success",
+                });
+              } else {
+                console.error('Failed to delete garment');
+                swal("Oops! Something went wrong!", {
+                  icon: "error",
+                });
+              }
+            })
+            .catch(error => {
+              console.error('Error deleting garment:', error);
               swal("Oops! Something went wrong!", {
                 icon: "error",
               });
-            }
-          })
-          .catch(error => {
-            console.error('Error deleting garment:', error);
-            swal("Oops! Something went wrong!", {
-              icon: "error",
             });
-          });
-      } else {
-        // Si el usuario cancela la eliminación, muestra un mensaje
-        swal("Your garment is safe!","", "success");
-      }
-    });
+        } else {
+          // Si el usuario cancela la eliminación, muestra un mensaje
+          swal("Your garment is safe!", "", "success");
+        }
+      });
   };
 
   const [showUpdateForm, setShowUpdateForm] = useState(false);
@@ -227,10 +227,7 @@ const ClosetGrid = () => {
         }}
       >
         <div className="modal-content">
-          <button className="centered-purple-button">
-            Add Clothes
-          </button>
-          <h2></h2>
+          <h2>Add Clothes</h2>
           <div className='input-group mb-3 centered-input'>
             <span className='input-group-text'><i className='fa-solid fa-tshirt'></i></span>
             <input type='text' id='clothing' className='form-control' placeholder='Clothes' value={clothing1} onChange={(e) => setClothing1(e.target.value)} />
@@ -256,6 +253,7 @@ const ClosetGrid = () => {
           </div>
         </div>
       </Modal>
+
       <Modal
         isOpen={showUpdateForm}
         onRequestClose={handleCloseUpdateForm}
@@ -278,10 +276,7 @@ const ClosetGrid = () => {
         }}
       >
         <div className="modal-content">
-          <button className="centered-purple-button">
-            Update Clothes
-          </button>
-          <h2></h2>
+          <h2>Update Clothes</h2>
           <div className='input-group mb-3 centered-input'>
             <span className='input-group-text'><i className='fa-solid fa-tshirt'></i></span>
             <input type='text' id='clothing' className='form-control' placeholder='Clothes' value={updateClothing} onChange={(e) => setUpdateClothing(e.target.value)} />
