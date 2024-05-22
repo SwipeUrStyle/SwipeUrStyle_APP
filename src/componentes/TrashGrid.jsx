@@ -26,14 +26,8 @@ const TrashGrid = () => {
               const UrlImage = URL.createObjectURL(blob);
               setImages(prevImages => ({ ...prevImages, [garment.imageName]: UrlImage }));
             })
-            .catch(error => {
-              console.error(error);
-            });
         });
       })
-      .catch(error => {
-        console.error('Error fetching trash garments:', error);
-      });
   }, []);
 
   const restoreGarment = async (id) => {

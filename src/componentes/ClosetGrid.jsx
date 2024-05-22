@@ -35,14 +35,8 @@ const ClosetGrid = () => {
               const imageUrl = URL.createObjectURL(blob);
               setImages(prevImages => ({ ...prevImages, [outfit.imageName]: imageUrl }));
             })
-            .catch(error => {
-              console.error('Error fetching image:', error);
-            });
         });
       })
-      .catch(error => {
-        console.error('Error fetching outfits:', error);
-      });
   }, []);
 
   const handleLike = index => {
