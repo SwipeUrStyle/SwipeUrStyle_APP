@@ -56,52 +56,49 @@ const ClosetGrid = () => {
   const handleCloseForm = () => {
     setShowForm(false);
   };
-  const handleDelete = (id) => {
-
-    swal({
-      title: "Are you sure?",
-      text: "You will not be able to recover this garment!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-          // Si el usuario confirma la eliminación, realiza la solicitud de eliminación
-          const token = localStorage.getItem('authToken');
-          const headers = {
-            'authToken': token
-          };
-
-          fetch(`https://swipeurstyleback.azurewebsites.net/garment/${id}`, {
-            method: 'DELETE',
-            headers: headers
-          })
-            .then(response => {
-              if (response.ok) {
-                setOutfits(outfits.filter(outfit => outfit.id !== id));
-                swal("Poof! Your garment has been deleted!", {
-                  icon: "success",
-                });
-              } else {
-                console.error('Failed to delete garment');
-                swal("Oops! Something went wrong!", {
-                  icon: "error",
-                });
-              }
-            })
-            .catch(error => {
-              console.error('Error deleting garment:', error);
-              swal("Oops! Something went wrong!", {
-                icon: "error",
-              });
-            });
-        } else {
-          // Si el usuario cancela la eliminación, muestra un mensaje
-          swal("Your garment is safe!", "", "success");
-        }
+  const handleDelete = async (id) => {
+    try {
+      const willDelete = await swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this garment!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
       });
+  
+      if (willDelete) {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+          'authToken': token
+        };
+  
+        const response = await fetch(`https://swipeurstyleback.azurewebsites.net/garment/${id}`, {
+          method: 'DELETE',
+          headers: headers
+        });
+  
+        if (response.ok) {
+          setOutfits(outfits.filter(outfit => outfit.id !== id));
+          swal("Poof! Your garment has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          console.error('Failed to delete garment');
+          swal("Oops! Something went wrong!", {
+            icon: "error",
+          });
+        }
+      } else {
+        swal("Your garment is safe!", "", "success");
+      }
+    } catch (error) {
+      console.error('Error deleting garment:', error);
+      swal("Oops! Something went wrong!", {
+        icon: "error",
+      });
+    }
   };
+  
 
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [updateClothing, setUpdateClothing] = useState('');
