@@ -1,0 +1,56 @@
+.outfit-itemm {
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    text-align: center;
+    display: flex; /* Cambiado a flexbox */
+    flex-direction: column; /* Dirección de los elementos */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    gap: 5px; /* Espacio entre los elementos */
+    position: relative;
+}
+ 
+.outfit-item:nth-child(5n) {
+    border-right: none;
+}
+ 
+.outfit-imagee {
+    width: 35%;
+    height: auto;
+    object-fit: cover;
+}
+ 
+.outfit-bottom {
+    width: 55%;
+    height: auto;
+    object-fit: cover;
+}
+ 
+.like-iconn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+ 
+.like-iconn:hover {
+    filter: brightness(1.2);
+}
+ 
+.save-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+ 
+.save-icon:hover {
+    filter: brightness(1.2);
+}
+ 
+ 
