@@ -54,8 +54,8 @@ html, body {
 }
 
 .react-calendar__tile--active {
-  background-color: rgb(112, 111, 229);
-  color: #FFFFFF;
+
+  color: #706fe5;
 }
 
 .react-calendar__tile:hover {
@@ -124,7 +124,7 @@ html, body {
   top: 0; /* Alinea el modal desde la parte superior */
   left: 0; /* Alinea el modal desde la izquierda */
   width: 100%; /* Ancho del modal al 100% del viewport */
-  height: 100%; /* Altura del modal al 100% del viewport */
+  height: 110%; /* Altura del modal al 100% del viewport */
   background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
   display: flex; /* Usa flexbox para alinear contenido */
   justify-content: center; /* Centra el contenido horizontalmente */
@@ -196,3 +196,23 @@ html, body {
   width: 0px;
   height: 0px;
 }
+.unschedule-button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: 'Now-Medium', sans-serif;
+  background-color: rgb(112, 111, 229);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 25px;
+  transition-duration: 0.4s;
+  position: absolute;
+  bottom: 20px; /* Ajusta la distancia desde la parte inferior */
+  right: 20px; /* Ajusta la distancia desde la derecha */
+  z-index: 999; /* Asegura que esté por encima del contenido del modal */
+}
+
+.unschedule-button:hover {
+  background-color: rgba(113, 111, 229, 0.74);
+  color: #FFFFFF;
+}
+

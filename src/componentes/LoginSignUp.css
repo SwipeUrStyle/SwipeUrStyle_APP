@@ -139,15 +139,6 @@ body, * {
     background: #EAEAEA;
     color: #676767;
 }
-.swal-footer .swal-button {
-    background-color: #706fe5 !important; /* Cambia el color de fondo del botón */
-    color: white !important; /* Cambia el color del texto del botón */
-}
- 
-.swal-footer .swal-button:hover {
-    background-color: #706fe5 !important; /* Cambia el color de fondo del botón al pasar el cursor */
-    filter: brightness(1.2); /* Ajusta el brillo del botón al pasar el cursor */
-}
 .password-button {
     border: none;
     color: #706fe5;

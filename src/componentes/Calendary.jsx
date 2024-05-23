@@ -68,6 +68,45 @@ function Calendary() {
     return URL.createObjectURL(blob);
   };
 
+  const handleUnschedule = async () => {
+    if (!selectedOutfit) return;
+
+    swal({
+      title: "Are you sure?",
+      text: "Once unscheduled, you will not be able to recover this outfit!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willUnschedule) => {
+      if (willUnschedule) {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+          'authToken': token,
+          'Content-Type': 'application/json'
+        };
+
+        try {
+          const response = await fetch(`https://swipeurstyleback.azurewebsites.net/outfit/${selectedOutfit.id}`, {
+            method: 'PATCH',
+            headers: headers,
+            body: JSON.stringify({ scheduled: false })
+          });
+
+          if (response.ok) {
+            setScheduledOutfits(scheduledOutfits.filter(outfit => outfit.id !== selectedOutfit.id));
+            setIsModalOpen(false);
+            swal('Outfit unscheduled successfully!');
+          } else {
+            throw new Error('Failed to unschedule outfit');
+          }
+        } catch (error) {
+          console.error('Error unscheduling outfit:', error);
+          swal('Error unscheduling outfit', error.message, 'error');
+        }
+      }
+    });
+  };
+
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const isScheduled = scheduledOutfits.some(outfit => {
@@ -106,7 +145,7 @@ function Calendary() {
             <button className="close-button" onClick={() => setIsModalOpen(false)}>
               &times;
             </button>
-            <h2 className="white-text">Da igual</h2>
+            <h2 className="white-text">Scheduled Outfit</h2>
             {selectedOutfit && (
               <div className="outfits-images-container"> {/* Contenedor de las imágenes */}
                 <h2>Outfit for {new Date(selectedOutfit.scheduledFor).toDateString()}</h2>
@@ -115,6 +154,9 @@ function Calendary() {
                 <img src={outfitImages.shoes} alt="Shoes" className="outfits-image" />
               </div>
             )}
+            <button className="unschedule-button" onClick={handleUnschedule}>
+              Unschedule
+            </button>
           </div>
         </div>
       )}

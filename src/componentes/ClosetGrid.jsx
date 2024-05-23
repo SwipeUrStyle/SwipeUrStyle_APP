@@ -174,10 +174,7 @@ const ClosetGrid = () => {
       swal("Pay Attention!", "Please fill in all required fields.!")
       return;
     }
-    if (image1.name in images) {
-      swal("Warning!", "This image has already been uploaded. Please select a different one.", "warning");
-      return;
-    }
+   
     const token = localStorage.getItem('authToken');
     // Primero, enviar la imagen
     const imageFormData = new FormData();
