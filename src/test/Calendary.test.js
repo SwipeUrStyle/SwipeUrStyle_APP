@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import ClothingSelector from '../componentes/ClothingSelector';
+import Calendary from '../componentes/Calendary';
 
 describe('Clothing Selector component', () => {
     test('renders componente de clothing selector', () => {
-        render(<ClothingSelector/>);
+        render(<Calendary/>);
       });
 })
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './options.css';
 
 function CalendaryOptions() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [activeButton, setActiveButton] = useState(location.pathname);
+
+  const [activeButton, setActiveButton] = useState('MySchedule');
 
   const redireccionar = (ruta) => {
     setActiveButton(ruta);

@@ -53,7 +53,7 @@
   width: 200px; /* Ajustar el ancho */
   height: 50px; /* Ajustar la altura */
 }
-
+ 
 .gray-button:hover {
   background-color: #e65a4b; /* Cambia el color al pasar el ratón */
 }
@@ -65,6 +65,21 @@
  
 .user-details {
   text-align: center; /* Alinea el texto al centro */
+}
+.view-button{
+  background-color: #8f8f8f;
+  color: white;
+  border: none;
+  border-radius: 10px; /* Para hacerlo redondo */
+  padding: 5px 10px; /* Ajusta el padding según sea necesario */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  margin-top: -20px;
+  margin-left: 1000px;
+  font-size: 14px;
+  width: 100px; /* Ajustar el ancho */
+  height: 25px; /* Ajustar la altura */
+ 
+ 
 }
  
 .update-button {
@@ -84,6 +99,12 @@
   .user-grid-item {
     padding: 20px; /* Reducir el padding para pantallas más pequeñas */
   }
+ 
+  .view-button {
+    font-size: 0.9em;
+    width: 9em;
+    height: 2.25em;
+  }
 }
  
 /* Media query para pantallas de hasta 576px de ancho */
@@ -92,5 +113,9 @@
     flex-direction: column; /* Cambiar la dirección de la columna a fila para pantallas más pequeñas */
     align-items: center; /* Centrar los elementos en pantallas más pequeñas */
   }
+  .view-button {
+    font-size: 0.8em;
+    width: 8em;
+    height: 2em;
+  }
 }
- 

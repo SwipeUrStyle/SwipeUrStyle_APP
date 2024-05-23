@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './outfits.css';
 import './OutfitGridWithLikes.css';
+ 
 const OutfitGridSave = () => {
   const outfits = [
     { id: 1, name: 'Outfit 1', image: require('../imagenes/outfits/1.png') },
@@ -16,28 +16,28 @@ const OutfitGridSave = () => {
     { id: 11, name: 'Outfit 11', image: require('../imagenes/outfits/11.png') },
     { id: 12, name: 'Outfit 12', image: require('../imagenes/outfits/12.png') }
   ];
-
+ 
   const [visibleCount, setVisibleCount] = useState(10);
   const [saved, setSaved] = useState(() => {
     const savedFromLocalStorage = JSON.parse(localStorage.getItem('savedOutfits'));
     return savedFromLocalStorage || Array(outfits.length).fill(false);
   });
-
+ 
   const handleLoadMore = () => {
-    setVisibleCount(visibleCount + 10);
+    setVisibleCount(prevCount => Math.min(prevCount + 10, outfits.length));
   };
-
+ 
   const handleSave = id => {
     const index = outfits.findIndex(outfit => outfit.id === id);
     const newSaved = [...saved];
     newSaved[index] = !newSaved[index];
     setSaved(newSaved);
   };
-
+ 
   useEffect(() => {
     localStorage.setItem('savedOutfits', JSON.stringify(saved));
   }, [saved]);
-
+ 
   const compareSavedStatus = (a, b) => {
     const indexA = outfits.findIndex(outfit => outfit.id === a.id);
     const indexB = outfits.findIndex(outfit => outfit.id === b.id);
@@ -46,15 +46,14 @@ const OutfitGridSave = () => {
     }
     return saved[indexA] ? -1 : 1;
   };
-
+ 
   const sortedOutfits = outfits.slice().sort(compareSavedStatus);
-
+ 
   return (
-    <div className="outfit-container">
+    <div className="outfit-columns">
       {sortedOutfits.slice(0, visibleCount).map(outfit => (
-        <div key={outfit.id} className="outfits-item">
-          <img src={outfit.image} alt={outfit.name} 
-          />
+        <div key={outfit.id} className="outfitss-item">
+          <img src={outfit.image} alt={outfit.name} />
           <button
             className="save-icon"
             onClick={() => handleSave(outfit.id)}
@@ -67,10 +66,11 @@ const OutfitGridSave = () => {
         </div>
       ))}
       {visibleCount < outfits.length && (
-        <button className="more-button" onClick={handleLoadMore}>More</button>
+        <button className="moree-button" onClick={handleLoadMore}>More</button>
       )}
     </div>
   );
 };
-
+ 
 export default OutfitGridSave;
+ 
