@@ -5,29 +5,28 @@ const UserDetails = () => {
   const [userInfo, setUserInfo] = useState(null); // Estado para almacenar la información del usuario
  
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchDataData = async () => {
       try {
         const token = localStorage.getItem('authToken');
         const headers = {
           'authToken': token
         };
  
-        const response = await fetch('https://swipeurstyleback.azurewebsites.net/user', {
+        const getResponse = await fetch('https://swipeurstyleback.azurewebsites.net/user', {
           method: 'GET',
           headers: {
             ...headers,
             'Content-Type': 'application/json',
           },
         });
-        const userData = await response.json();
-        console.log('User data:', userData);
-        setUserInfo(userData);
+        const dataUser = await getResponse.json();
+        setUserInfo(dataUser);
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        swal('Error fetching user data:', error, 'error');
       }
     };
  
-    fetchUserData();
+    fetchDataData();
   }, []);
  
   const ContruccionFuncion = () => {
