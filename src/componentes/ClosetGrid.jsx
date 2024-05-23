@@ -244,10 +244,10 @@ const ClosetGrid = () => {
               )}
               <p className="outfit-name" style={{ marginTop: '10px', textAlign: 'center' }}>{outfit.name}</p>
               <button className="update-button" style={{ position: 'absolute', bottom: '15px', left: '61%', transform: 'translateX(-50%)' }} onClick={() => handleOpenUpdateForm(index)}>Update</button>
-              <button style={{ position: 'absolute', bottom: 10, right: 50, border: 'none', background: 'none' }} onClick={() => handleDelete(outfit.id)}>
+              <button style={{ position: 'absolute', bottom: 10, right: 50, border: 'none', background: 'none', cursor : 'pointer' }} onClick={() => handleDelete(outfit.id)}>
                 <img src={require(`../imagenes/trash-icon.PNG`)} alt="delete" />
               </button>
-              <button style={{ position: 'absolute', bottom: 15, right: 10, border: 'none', background: 'none' }} onClick={() => handleLike(index)}>
+              <button style={{ position: 'absolute', bottom: 15, right: 10, border: 'none', background: 'none', cursor : 'pointer'}} onClick={() => handleLike(index)}>
                 <img src={require(`../imagenes/${like[index] ? 'like-blue' : 'like-grey'}.PNG`)} alt="save" />
               </button>
             </div>
@@ -287,7 +287,7 @@ const ClosetGrid = () => {
           </div>
           <div className={`input-group mb-3 centered-input ${isCategoryModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-list'></i></span>
-            <select id='category' className='form-control input-category' value={category1} onChange={(e) => { setCategory1(e.target.value); setIsCategoryModified(true); }}>
+            <select id='category' className='form-control input-categoryy' value={category1} onChange={(e) => { setCategory1(e.target.value); setIsCategoryModified(true); }}>
               <option value="">Select Category</option>
               <option value="Top">Top</option>
               <option value="Bottom">Bottom</option>
@@ -343,7 +343,7 @@ const ClosetGrid = () => {
           </div>
           <div className={`input-group mb-3 centered-input ${isUpdateCategoryModified ? 'black-text' : ''}`}>
             <span className='input-group-text'><i className='fa-solid fa-list'></i></span>
-            <select id='update-category' className='form-control input-category' value={updateCategory} onChange={(e) => { setUpdateCategory(e.target.value); setIsUpdateCategoryModified(true); }}>
+            <select id='update-category' className='form-control input-categoryy' value={updateCategory} onChange={(e) => { setUpdateCategory(e.target.value); setIsUpdateCategoryModified(true); }}>
               <option value={updateCategory}>{updateCategory}</option>
               <option value="Top">Top</option>
               <option value="Bottom">Bottom</option>
