@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import ClothingSelector from '../componentes/ClothingSelector';
 
 describe('Clothing Selector component', () => {

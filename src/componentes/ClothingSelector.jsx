@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './clothingselector.css';
 import swal from 'sweetalert';
+import DatePicker from 'react-datepicker'; // Importa el componente de DatePicker
+import 'react-datepicker/dist/react-datepicker.css';
 
 const ClothingSelector = () => {
   const [tops, setTops] = useState([]);
@@ -13,6 +15,8 @@ const ClothingSelector = () => {
   const [selectedBottom, setSelectedBottom] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
   const [loadingImages, setLoadingImages] = useState(true); // Estado para controlar la carga de imágenes
+  const [selectedDate, setSelectedDate] = useState(null); // Estado para manejar la fecha seleccionada
+  const [showCalendar, setShowCalendar] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,7 +103,7 @@ const ClothingSelector = () => {
     };
     console.log('Selected outfit:', selectedOutfit);
     try {
-      const postResponse  = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
+      const postResponse = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(selectedOutfit)
@@ -123,6 +127,63 @@ const ClothingSelector = () => {
     }
   };
 
+  // Función para manejar la selección de fecha
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
+  const handleNext = async () => {
+    if (selectedDate === null) {
+      swal("Ups!", "Please select a date", "warning");
+      return;
+    }
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Establecer la hora a 00:00:00:00 para comparar solo fechas
+    if (selectedDate < today) {
+      // Si la fecha seleccionada es anterior al día actual, muestra un mensaje de error o realiza alguna acción
+      swal("The selected date must be equal to or after today", "Choose Again", "warning");
+      return;
+    }
+    const selectedOutfit = {
+      topId: topsData[selectedTop].id,
+      bottomId: bottomsData[selectedBottom].id,
+      shoesId: shoesData[selectedShoes].id,
+    };
+
+    const token = localStorage.getItem('authToken');
+    const headers = {
+      'Content-Type': 'application/json',
+      'authToken': token
+    };
+    console.log('Selected outfit:', selectedOutfit);
+    try {
+      const postResponse = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(selectedOutfit)
+      });
+      if (!postResponse.ok) {
+        throw new Error(`Failed to save outfit: ${postResponse.status}`);
+      }
+      const scheduledDate = new Date(selectedDate); // Convert the string to a Date object
+      const scheduledDateString = scheduledDate.toISOString().split('T')[0]; 
+      console.log(scheduledDateString);
+      const { id } = await postResponse.json();
+      const patchResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/outfit/${id}`, {
+        method: 'PATCH',
+        headers: headers,
+        body: JSON.stringify({ scheduledFor: scheduledDateString })
+      });
+      if (patchResponse.ok) {
+        swal('Outfit Agend successfully!');
+      } else {
+        throw new Error(`Failed to mark outfit as favorite: ${patchResponse.status}`);
+      }
+    } catch (error) {
+      swal('Error during save:', error.message);
+    }
+    setSelectedDate('');
+    setShowCalendar(false);
+  };
   return (
     <div className="containerSelector">
       {loadingImages && <p>Uploading images...</p>}
@@ -161,7 +222,21 @@ const ClothingSelector = () => {
       </div>
       <div className="button-container">
         <button className="save-button" onClick={handleSave}>Save</button>
-        <button className="schedule-button">Schedule</button>
+        <button onClick={() => setShowCalendar(!showCalendar)} className="schedule-button">Schedule</button>
+        {showCalendar && (
+          <div className="modalSchedule-overlay">
+            <div className="modalSchedule-content">
+            <button className="modalSchedule-close" onClick={() => setShowCalendar(false)}>X</button>
+
+              <DatePicker
+                selected={selectedDate}
+                onChange={handleDateSelect}
+                dateFormat="yyyy-MM-dd"
+              />
+              <button onClick={handleNext}>Siguiente</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
