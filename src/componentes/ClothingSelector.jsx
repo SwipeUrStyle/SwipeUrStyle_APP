@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './clothingselector.css';
 import swal from 'sweetalert';
-import DatePicker from 'react-datepicker'; // Importa el componente de DatePicker
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ClothingSelector = () => {
@@ -14,8 +14,8 @@ const ClothingSelector = () => {
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottom, setSelectedBottom] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
-  const [loadingImages, setLoadingImages] = useState(true); // Estado para controlar la carga de imágenes
-  const [selectedDate, setSelectedDate] = useState(null); // Estado para manejar la fecha seleccionada
+  const [loadingImages, setLoadingImages] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
 
   useEffect(() => {
@@ -35,16 +35,13 @@ const ClothingSelector = () => {
 
       try {
         const token = localStorage.getItem('authToken');
-        const headers = {
-          'authToken': token
-        };
-
+        const headers = { 'authToken': token };
         const response = await fetch('https://swipeurstyleback.azurewebsites.net/garments', { headers });
         const data = await response.json();
-
         const topsData = data.filter(item => item.category === 'TOP');
         const bottomsData = data.filter(item => item.category === 'BOTTOM');
         const shoesData = data.filter(item => item.category === 'SHOES');
+
         setTopsData(topsData);
         setBottomsData(bottomsData);
         setShoesData(shoesData);
@@ -56,7 +53,7 @@ const ClothingSelector = () => {
         setTops(topsImages);
         setBottoms(bottomsImages);
         setShoes(shoesImages);
-        setLoadingImages(false); // Cuando todas las imágenes se cargan, establecer loadingImages en false
+        setLoadingImages(false);
       } catch (error) {
         console.error('Error fetching garments:', error);
       }
@@ -65,26 +62,15 @@ const ClothingSelector = () => {
     fetchData();
   }, []);
 
-
   const changeClothing = (type, direction) => {
-    let selected;
-    let setSelected;
-    let items;
-
+    let selected, setSelected, items;
     if (type === 'top') {
-      selected = selectedTop;
-      setSelected = setSelectedTop;
-      items = tops;
+      [selected, setSelected, items] = [selectedTop, setSelectedTop, tops];
     } else if (type === 'bottom') {
-      selected = selectedBottom;
-      setSelected = setSelectedBottom;
-      items = bottoms;
+      [selected, setSelected, items] = [selectedBottom, setSelectedBottom, bottoms];
     } else if (type === 'shoes') {
-      selected = selectedShoes;
-      setSelected = setSelectedShoes;
-      items = shoes;
+      [selected, setSelected, items] = [selectedShoes, setSelectedShoes, shoes];
     }
-
     const newIndex = direction === 'next' ? (selected + 1) % items.length : (selected - 1 + items.length) % items.length;
     setSelected(newIndex);
   };
@@ -95,13 +81,12 @@ const ClothingSelector = () => {
       bottomId: bottomsData[selectedBottom].id,
       shoesId: shoesData[selectedShoes].id,
     };
-
     const token = localStorage.getItem('authToken');
     const headers = {
       'Content-Type': 'application/json',
       'authToken': token
     };
-    console.log('Selected outfit:', selectedOutfit);
+
     try {
       const postResponse = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
         method: 'POST',
@@ -127,34 +112,33 @@ const ClothingSelector = () => {
     }
   };
 
-  // Función para manejar la selección de fecha
   const handleDateSelect = (date) => {
     setSelectedDate(date);
   };
+
   const handleNext = async () => {
     if (selectedDate === null) {
       swal("Ups!", "Please select a date", "warning");
       return;
     }
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Establecer la hora a 00:00:00:00 para comparar solo fechas
+    today.setHours(0, 0, 0, 0);
     if (selectedDate < today) {
-      // Si la fecha seleccionada es anterior al día actual, muestra un mensaje de error o realiza alguna acción
       swal("The selected date must be equal to or after today", "Choose Again", "warning");
       return;
     }
+
     const selectedOutfit = {
       topId: topsData[selectedTop].id,
       bottomId: bottomsData[selectedBottom].id,
       shoesId: shoesData[selectedShoes].id,
     };
-
     const token = localStorage.getItem('authToken');
     const headers = {
       'Content-Type': 'application/json',
       'authToken': token
     };
-    console.log('Selected outfit:', selectedOutfit);
+
     try {
       const postResponse = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
         method: 'POST',
@@ -164,9 +148,8 @@ const ClothingSelector = () => {
       if (!postResponse.ok) {
         throw new Error(`Failed to save outfit: ${postResponse.status}`);
       }
-      const scheduledDate = new Date(selectedDate); // Convert the string to a Date object
-      const scheduledDateString = scheduledDate.toISOString().split('T')[0]; 
-      console.log(scheduledDateString);
+      const scheduledDate = new Date(selectedDate);
+      const scheduledDateString = scheduledDate.toISOString().split('T')[0];
       const { id } = await postResponse.json();
       const patchResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/outfit/${id}`, {
         method: 'PATCH',
@@ -174,9 +157,9 @@ const ClothingSelector = () => {
         body: JSON.stringify({ scheduledFor: scheduledDateString })
       });
       if (patchResponse.ok) {
-        swal('Outfit Agend successfully!');
+        swal('Outfit scheduled successfully!');
       } else {
-        throw new Error(`Failed to mark outfit as favorite: ${patchResponse.status}`);
+        throw new Error(`Failed to schedule outfit: ${patchResponse.status}`);
       }
     } catch (error) {
       swal('Error during save:', error.message);
@@ -184,6 +167,7 @@ const ClothingSelector = () => {
     setSelectedDate('');
     setShowCalendar(false);
   };
+
   return (
     <div className="containerSelector">
       {loadingImages && <p>Uploading images...</p>}
@@ -226,7 +210,7 @@ const ClothingSelector = () => {
         {showCalendar && (
           <div className="modalSchedule-overlay">
             <div className="modalSchedule-content">
-            <button className="modalSchedule-close" onClick={() => setShowCalendar(false)}>X</button>
+              <button className="modalSchedule-close" onClick={() => setShowCalendar(false)}>X</button>
 
               <DatePicker
                 selected={selectedDate}
