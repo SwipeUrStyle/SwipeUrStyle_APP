@@ -209,13 +209,13 @@ const ClothingSelector = () => {
           <div className="modalSchedule-overlay">
             <div className="modalSchedule-content">
               <button className="modalSchedule-close" onClick={() => setShowCalendar(false)}>X</button>
-
+              <h2 className='TitleSchedule'>Select a Day</h2>
               <DatePicker
                 selected={selectedDate}
                 onChange={handleDateSelect}
                 dateFormat="yyyy-MM-dd"
               />
-              <button onClick={handleNext}>Siguiente</button>
+              <button className='NextButton' onClick={handleNext}>Next</button>
             </div>
           </div>
         )}
