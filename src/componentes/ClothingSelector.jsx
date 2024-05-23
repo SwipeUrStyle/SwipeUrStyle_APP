@@ -127,30 +127,28 @@ const ClothingSelector = () => {
       swal("The selected date must be equal to or after today", "Choose Again", "warning");
       return;
     }
-
-    const selectedOutfit = {
-      topId: topsData[selectedTop].id,
-      bottomId: bottomsData[selectedBottom].id,
-      shoesId: shoesData[selectedShoes].id,
-    };
     const token = localStorage.getItem('authToken');
     const headers = {
       'Content-Type': 'application/json',
       'authToken': token
     };
-
+    const outfitToSchedule = {
+      topId: topsData[selectedTop].id,
+      bottomId: bottomsData[selectedBottom].id,
+      shoesId: shoesData[selectedShoes].id,
+    };
     try {
-      const postResponse = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
+      const Response = await fetch('https://swipeurstyleback.azurewebsites.net/outfit', {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(selectedOutfit)
+        body: JSON.stringify(outfitToSchedule)
       });
-      if (!postResponse.ok) {
-        throw new Error(`Failed to save outfit: ${postResponse.status}`);
+      if (!Response.ok) {
+        throw new Error(`Failed to save outfit: ${Response.status}`);
       }
       const scheduledDate = new Date(selectedDate);
       const scheduledDateString = scheduledDate.toISOString().split('T')[0];
-      const { id } = await postResponse.json();
+      const { id } = await Response.json();
       const patchResponse = await fetch(`https://swipeurstyleback.azurewebsites.net/outfit/${id}`, {
         method: 'PATCH',
         headers: headers,
